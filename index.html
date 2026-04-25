@@ -1115,7 +1115,7 @@
       </div>
     </div>
 
-    <p style="margin-top: 32px; font-size: 13px; color: var(--white-soft); opacity: 0.6;" class="reveal">Även klippkort, månadskort, 3- och 6-månaderskort samt årskort finns tillgängliga. <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=ROjeG5TiLe8N5OsDRGKr9xVH5&action=membership&valdanlaggning=1&type=kont" style="color: var(--accent); text-decoration: underline;">Se alla alternativ &rarr;</a></p>
+    <p style="margin-top: 32px; font-size: 13px; color: var(--white-soft); opacity: 0.6;" class="reveal">Även klippkort, månadskort, 3- och 6-månaderskort samt årskort finns tillgängliga. <a id="alt-link-top" href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=ROjeG5TiLe8N5OsDRGKr9xVH5&action=membership&valdanlaggning=1&type=kont" target="_blank" style="color: var(--accent); text-decoration: underline;">Se alla alternativ &rarr;</a></p>
   </section>
 
   <!-- ===== PT SECTION ===== -->
@@ -1262,7 +1262,7 @@
       </div>
     </div>
 
-    <p style="margin-top: 32px; font-size: 13px; color: var(--white-soft); opacity: 0.6;" class="reveal">Även klippkort, månadskort, 3- och 6-månaderskort samt årskort finns tillgängliga. <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=ROjeG5TiLe8N5OsDRGKr9xVH5&action=membership&valdanlaggning=1&type=kont" style="color: var(--accent); text-decoration: underline;">Se alla alternativ &rarr;</a></p>
+    <p style="margin-top: 32px; font-size: 13px; color: var(--white-soft); opacity: 0.6;" class="reveal">Även klippkort, månadskort, 3- och 6-månaderskort samt årskort finns tillgängliga. <a id="alt-link-bottom" href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=ROjeG5TiLe8N5OsDRGKr9xVH5&action=membership&valdanlaggning=1&type=kont" target="_blank" style="color: var(--accent); text-decoration: underline;">Se alla alternativ &rarr;</a></p>
   </section>
 
   <!-- ===== GALLERY STRIP ===== -->
@@ -1362,26 +1362,32 @@
     // ===== PRICING TABS =====
     function showPricingTop(type) {
       const section = document.getElementById('pricing');
+      const altLink = document.getElementById('alt-link-top');
       section.querySelectorAll('.pricing-group').forEach(g => g.classList.remove('active'));
       section.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
       if (type === 'both') {
         document.getElementById('pricing-top-both').classList.add('active');
         section.querySelector('.pricing-tab:first-child').classList.add('active');
+        if(altLink) altLink.href='https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=ROjeG5TiLe8N5OsDRGKr9xVH5&action=membership&valdanlaggning=1&type=kont';
       } else {
         document.getElementById('pricing-top-trangsund').classList.add('active');
         section.querySelector('.pricing-tab:last-child').classList.add('active');
+        if(altLink) altLink.href='https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RZDQjF5Jl3P0EPHsnWuCDbVKl&action=membership&valdanlaggning=2';
       }
     }
     function showPricingBottom(type) {
       const section = document.getElementById('pricing-full');
+      const altLink = document.getElementById('alt-link-bottom');
       section.querySelectorAll('.pricing-group').forEach(g => g.classList.remove('active'));
       section.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
       if (type === 'both') {
         document.getElementById('pricing-bottom-both').classList.add('active');
         section.querySelector('.pricing-tab:first-child').classList.add('active');
+        if(altLink) altLink.href='https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=ROjeG5TiLe8N5OsDRGKr9xVH5&action=membership&valdanlaggning=1&type=kont';
       } else {
         document.getElementById('pricing-bottom-trangsund').classList.add('active');
         section.querySelector('.pricing-tab:last-child').classList.add('active');
+        if(altLink) altLink.href='https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RZDQjF5Jl3P0EPHsnWuCDbVKl&action=membership&valdanlaggning=2';
       }
     }
 
