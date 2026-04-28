@@ -91,6 +91,41 @@
       transition: color 0.3s;
     }
     .nav-links a:hover { color: var(--accent); }
+    .nav-dropdown { position: relative; }
+    .nav-submenu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: rgba(20, 20, 20, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--dark-border);
+      border-radius: 12px;
+      padding: 8px 0;
+      min-width: 160px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+      transform: translateX(-50%) translateY(16px);
+    }
+    .nav-dropdown:hover .nav-submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(8px);
+    }
+    .nav-submenu a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 13px;
+      color: var(--white-soft);
+      text-decoration: none;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-submenu a:hover {
+      color: var(--accent);
+      background: rgba(255,255,255,0.04);
+    }
     .nav-cta {
       padding: 10px 24px;
       background: var(--accent);
@@ -889,6 +924,69 @@
       opacity: 0.6;
     }
 
+    /* ===== FAQ ===== */
+    .faq-section {
+      padding: 80px 24px;
+      background: var(--black);
+    }
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--dark-border);
+    }
+    .faq-item:first-child {
+      border-top: 1px solid var(--dark-border);
+    }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      text-align: left;
+    }
+    .faq-q span {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.5;
+      transition: color 0.3s;
+    }
+    .faq-q:hover span { color: var(--accent); }
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      stroke: var(--white-soft);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), stroke 0.3s;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      stroke: var(--accent);
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.4s;
+      padding: 0 0;
+    }
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 0 20px;
+    }
+    .faq-a p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--white-soft);
+      padding-right: 36px;
+    }
+
     /* ===== FOOTER ===== */
     footer {
       background: var(--dark);
@@ -1030,15 +1128,22 @@
     <a href="#"><img src="https://rezdar.com/stoltgym/images/stoltgym.png" alt="Stolt Gym" class="nav-logo"></a>
 
     <ul class="nav-links">
-      <li><a href="#features">Gymmet</a></li>
+      <li><a href="#gymmet">Gymmet</a></li>
       <li><a href="#pt">Personlig Träning</a></li>
-      <li><a href="#pricing">Medlemskap</a></li>
+      <li><a href="#medlemskap">Medlemskap</a></li>
       <li><a href="coming-soon.html">Gruppträning</a></li>
       <li><a href="coming-soon.html">Shop</a></li>
-      <li><a href="#contact">Kontakt</a></li>
+      <li class="nav-dropdown">
+        <a href="#kontakt">Kontakt</a>
+        <div class="nav-submenu">
+          <a href="#tider">Öppettider</a>
+          <a href="#faq">FAQ</a>
+          <a href="#kontakt">Kontakta oss</a>
+        </div>
+      </li>
     </ul>
 
-    <a href="#pricing" class="nav-cta">Bli Medlem</a>
+    <a href="#medlemskap" class="nav-cta">Bli Medlem</a>
 
     <button class="hamburger" id="hamburger" aria-label="Meny">
       <span></span><span></span><span></span>
@@ -1047,12 +1152,14 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#features" onclick="closeMenu()">Gymmet</a>
+    <a href="#gymmet" onclick="closeMenu()">Gymmet</a>
     <a href="#pt" onclick="closeMenu()">PT</a>
-    <a href="#pricing" onclick="closeMenu()">Medlemskap</a>
+    <a href="#medlemskap" onclick="closeMenu()">Medlemskap</a>
     <a href="coming-soon.html">Gruppträning</a>
     <a href="coming-soon.html">Shop</a>
-    <a href="#contact" onclick="closeMenu()">Kontakt</a>
+    <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
+    <a href="#tider" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">Öppettider</a>
+    <a href="#faq" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">FAQ</a>
   </div>
 
   <!-- ===== HERO ===== -->
@@ -1068,15 +1175,15 @@
       <h1>TRÄNA<br><span class="hero-logo-crop"><img src="STOLTGYM_LOGGA_CROPPED.png" alt="STOLT"></span></h1>
       <p class="hero-sub">Fräscht gym med modern utrustning, meriterade PTs, gruppträning, solarium, kosttillskottbutik och mycket mer.</p>
       <div class="hero-btns">
-        <a href="#pricing" class="btn-primary">Bli Medlem</a>
-        <a href="#trial" class="btn-outline">Prova Gratis</a>
+        <a href="#medlemskap" class="btn-primary">Bli Medlem</a>
+        <a href="#testa" class="btn-outline">Prova Gratis</a>
       </div>
     </div>
   </section>
 
   <!-- ===== QUICK LINKS ===== -->
   <div class="quick-bar">
-    <a href="#pricing">
+    <a href="#medlemskap">
       <svg class="qb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       <span class="qb-label">Medlem</span>
     </a>
@@ -1088,14 +1195,14 @@
       <svg class="qb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="qb-label">Shop</span>
     </a>
-    <a href="#trial">
+    <a href="#testa">
       <svg class="qb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       <span class="qb-label">Prova på</span>
     </a>
   </div>
 
   <!-- ===== FEATURES ===== -->
-  <section class="features" id="features">
+  <section class="features" id="gymmet">
     <span class="section-tag reveal">Varför Stolt?</span>
     <h2 class="section-title reveal">MER ÄN BARA<br>ETT GYM.</h2>
     <p class="section-desc reveal">En gemenskap där du kan känna dig motiverad och inspirerad att nå dina mål, oavsett din träningsnivå.</p>
@@ -1151,7 +1258,7 @@
   </section>
 
   <!-- ===== PRICING (FIRST - scroll target for Bli Medlem) ===== -->
-  <section class="pricing-section" id="pricing">
+  <section class="pricing-section" id="medlemskap">
     <span class="section-tag reveal">Medlemskap</span>
     <h2 class="section-title reveal">VÄLJ DITT<br>MEDLEMSKAP.</h2>
     <p class="section-desc reveal">Flexibla alternativ för alla behov och träningsnivåer. Fri InBody &amp; PT-konsultation för nya medlemmar (spara 797 kr).</p>
@@ -1395,7 +1502,7 @@
   </div>
 
   <!-- ===== FREE TRIAL ===== -->
-  <section class="trial-section" id="trial">
+  <section class="trial-section" id="testa">
     <span class="section-tag reveal">Nyfiken?</span>
     <h2 class="section-title reveal">PROVA PÅ EN DAG.<br>HELT GRATIS.</h2>
     <p class="section-desc reveal">Registrera dig och upplev Stolt Gym utan förpliktelser. Ingen bindningstid, inga dolda avgifter.</p>
@@ -1403,7 +1510,7 @@
   </section>
 
   <!-- ===== ÖPPETTIDER ===== -->
-  <section class="hours-section" id="hours">
+  <section class="hours-section" id="tider">
     <span class="section-tag reveal">Öppettider</span>
     <h2 class="section-title reveal">NÄR VI HAR<br>ÖPPET.</h2>
 
@@ -1463,8 +1570,87 @@
     </div>
   </section>
 
+  <!-- ===== FAQ ===== -->
+  <section class="faq-section" id="faq">
+    <span class="section-tag reveal">Vanliga frågor</span>
+    <h2 class="section-title reveal">FAQ</h2>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Hur blir jag medlem och när startar medlemskapet?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Du kan bli medlem både online och direkt på plats i gymmet. Du väljer själv vilket startdatum ditt medlemskap ska börja gälla från.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Hur gammal måste man vara och hur funkar tillsammans-kortet?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>För att träna själv hos oss behöver du vara minst 15 år. Är du mellan 11–14 år kan du träna tillsammans med en förälder genom ett tillsammans-kort. Kortet gäller endast när barnet tränar med förälder, under bemannade tider i Skogås, och tecknas på plats av både barnet och föräldern.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Får man ta med barn till gymmet?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>I Trångsund är gymmet barnfritt. I Skogås finns ett barnrum utan barnpassning. Barnen behöver kunna klara sig själva och får inte vara ute i gymmet eller delta i gruppträning.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Kan jag träna på båda gymmen?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Ja, det beror på vilket medlemskap du väljer. Väljer du medlemskap i Skogås ingår även Trångsund. Väljer du medlemskap i Trångsund gäller det endast där.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Vad gäller för bindningstid, uppsägning och medlemskap?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Alla autogiroavtal har 12 månaders bindningstid och 3 månaders uppsägningstid. Uppsägning görs via formuläret "Uppsägning" under fliken "Medlemskap". Medlemskapet är personligt och får inte lånas ut. Att släppa in någon utan medlemskap kan leda till avstängning eller en avgift på 250 kr.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Kan jag frysa mitt medlemskap?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Ja, men endast vid långtidssjukdom, operation (ej skönhetsingrepp) eller militärtjänstgöring. Du behöver skicka in ett läkarintyg där det tydligt framgår att du inte får träna samt start- och slutdatum. Frysning kan inte göras retroaktivt. För att den ska gälla från nästa månad måste intyget skickas in senast den 19:e månaden innan.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Vad händer om jag missar en betalning?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Om en betalning missas blir ditt medlemskap tillfälligt avstängt tills betalningen är gjord. Du kan betala i receptionen efter den 4:e i månaden, då tillkommer en påminnelseavgift på 60 kr. Betalas den inte inom 30 dagar skickas ärendet vidare till inkasso.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Kan jag överlåta mitt medlemskap?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Ja, överlåtelse är möjligt på autogiro. Det kostar 395 kr och det nuvarande medlemspriset följer med. Överlåtelse gäller inte för kontantkort.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Hur fungerar träning på recept (FaR)?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>FaR har en bindningstid på 3 månader istället för 12 månader och en startavgift tillkommer. Uppsägningstiden är 3 månader. Registrering sker i Skogås under bemannade tider och du behöver ta med ditt FaR-intyg.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Hur funkar friskvård och kvitton?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a"><p>Vi är anslutna till Epassi, men klubbavgiften på 395 kr (som dras en gång per år på autogiro) täcks inte. Använder du andra system, som Wellnet, lämnar du in kvitto i efterhand. Har du ett större friskvårdsbelopp kan du behöva vänta till slutet av året för att hämta ut kvitton. Alla kvitton och intyg hämtas som PDF via appen GymControl, där du loggar in med din e-post och din födelsedag (4 siffror) som lösenord, t.ex. 1507.</p></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== FOOTER ===== -->
-  <footer id="contact">
+  <footer id="kontakt">
     <div class="footer-inner">
       <div class="footer-brand">
         <img src="https://rezdar.com/stoltgym/images/stoltgym.png" alt="Stolt Gym" style="height: 40px; width: auto; margin-bottom: 16px; filter: invert(1);">
@@ -1488,7 +1674,7 @@
         <a href="coming-soon.html">Personlig Träning</a>
         <a href="coming-soon.html">Shop</a>
         <a href="coming-soon.html">Lediga Tjänster</a>
-        <a href="#hours">Öppettider</a>
+        <a href="#tider">Öppettider</a>
       </div>
       <div class="footer-col">
         <h5>Kontakt</h5>
@@ -1524,7 +1710,7 @@
 
     // ===== PRICING TABS =====
     function showPricingTop(type) {
-      const section = document.getElementById('pricing');
+      const section = document.getElementById('medlemskap');
       const altLink = document.getElementById('alt-link-top');
       section.querySelectorAll('.pricing-group').forEach(g => g.classList.remove('active'));
       section.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
@@ -1552,6 +1738,14 @@
         section.querySelector('.pricing-tab:last-child').classList.add('active');
         if(altLink) altLink.href='https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RZDQjF5Jl3P0EPHsnWuCDbVKl&action=membership&valdanlaggning=2';
       }
+    }
+
+    // ===== FAQ =====
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
     }
 
     // ===== HOURS TABS =====
