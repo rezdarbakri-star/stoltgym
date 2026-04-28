@@ -166,7 +166,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
     <div class="step active" id="step1">
       <div style="text-align:center">
         <div class="retention-badge">Vänta — läs detta först</div>
-        <h1 class="retention-title">Vi vill inte<br>förlora <span>dig</span>.</h1>
+        <h1 class="retention-title">Vi vill inte<br>förlora <span>dig</span> 💙</h1>
         <p class="retention-desc">Innan du bestämmer dig — vi har ett exklusivt erbjudande till dig som befintlig medlem. Bind om dig och få en extra boost till träningen.</p>
       </div>
 
@@ -175,15 +175,15 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
         <div class="offer-price">449:- <small>/mån</small></div>
         <div class="offer-perks">
           <div class="offer-perk">
-            <span style="font-size:18px;flex-shrink:0">💙</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke="currentColor"><path d="M20 6L9 17l-5-5"/></svg>
             Fri PT-timme
           </div>
           <div class="offer-perk">
-            <span style="font-size:18px;flex-shrink:0">💙</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke="currentColor"><path d="M20 6L9 17l-5-5"/></svg>
             Fri InBody-vägning <strong>värde 399:-</strong>
           </div>
           <div class="offer-perk">
-            <span style="font-size:18px;flex-shrink:0">💙</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke="currentColor"><path d="M20 6L9 17l-5-5"/></svg>
             Tillgång till <strong>båda gymmen</strong>
           </div>
         </div>
@@ -250,13 +250,13 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 
     <!-- ════════ STEP 3: PERSONAL INFO ════════ -->
     <div class="step" id="step3">
-      <button type="button" class="btn-back" onclick="goToStep(2)">
+      <button type="button" class="btn-back" onclick="goToStep(isOffer?1:2)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Tillbaka
       </button>
 
       <h2 class="info-title">Dina uppgifter.</h2>
-      <p class="info-sub">Vi behöver dina uppgifter för att behandla din uppsägning.</p>
+      <p class="info-sub" id="infoSub">Vi behöver dina uppgifter för att behandla din förfrågan.</p>
 
       <div class="field">
         <label>Fullständigt namn *</label>
@@ -281,7 +281,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
         <textarea name="message" placeholder="Valfritt meddelande..."></textarea>
       </div>
 
-      <button type="button" class="btn-primary" onclick="validateStep3()">Granska uppsägning</button>
+      <button type="button" class="btn-primary" onclick="validateStep3()" id="step3Btn">Granska</button>
     </div>
 
     <!-- ════════ STEP 4: CONFIRM ════════ -->
@@ -350,47 +350,47 @@ function goToStep(n) {
   document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
   const target = document.getElementById('step' + n);
   target.style.display = 'block';
-  setTimeout(() => target.classList.add('active'), 10);
+  setTimeout(() => { target.classList.add('active'); if (n === 4) initSignature(); }, 10);
   currentStep = n;
   updateProgress(n);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function updateProgress(n) {
-  document.querySelectorAll('.progress-dot').forEach((d, i) => {
-    d.classList.remove('active', 'done');
-    if (i + 1 < n) d.classList.add('done');
-    if (i + 1 === n) d.classList.add('active');
-  });
-  document.querySelectorAll('.progress-line').forEach((l, i) => {
-    l.classList.toggle('active', i < n - 1);
-  });
+  // Hide 4th dot + line if offer path (3 steps)
+  const dots = document.querySelectorAll('.progress-dot');
+  const lines = document.querySelectorAll('.progress-line');
+  if (isOffer) {
+    dots[1].style.display = 'none';
+    lines[0].style.display = 'none';
+    // Map steps: 1→1, 3→2, 4→3
+    const mapped = n === 1 ? 1 : n === 3 ? 2 : 3;
+    const visibleDots = [dots[0], dots[2], dots[3]];
+    const visibleLines = [lines[1], lines[2]];
+    visibleDots.forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i + 1 < mapped) d.classList.add('done');
+      if (i + 1 === mapped) d.classList.add('active');
+    });
+    visibleLines.forEach((l, i) => { l.classList.toggle('active', i < mapped - 1); });
+  } else {
+    dots[1].style.display = '';
+    lines[0].style.display = '';
+    dots.forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i + 1 < n) d.classList.add('done');
+      if (i + 1 === n) d.classList.add('active');
+    });
+    lines.forEach((l, i) => { l.classList.toggle('active', i < n - 1); });
+  }
 }
 
 // Step 1 — Accept offer
+let isOffer = false;
 function acceptOffer() {
-  document.getElementById('choiceField').value = 'Accepterat erbjudande (449:-/mån Vuxen)';
-  // Submit offer acceptance
-  const form = document.getElementById('cancelForm');
-  const formData = new FormData();
-  formData.append('choice', 'Accepterat erbjudande (449:-/mån Vuxen + PT + InBody)');
-  formData.append('_subject', 'ERBJUDANDE ACCEPTERAT — Stolt Gym');
-
-  fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
-    .then(() => {
-      document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
-      document.getElementById('progress').style.display = 'none';
-      const offer = document.getElementById('stepOffer');
-      offer.style.display = 'block';
-      setTimeout(() => offer.classList.add('active'), 10);
-    })
-    .catch(() => {
-      document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
-      document.getElementById('progress').style.display = 'none';
-      const offer = document.getElementById('stepOffer');
-      offer.style.display = 'block';
-      setTimeout(() => offer.classList.add('active'), 10);
-    });
+  isOffer = true;
+  document.getElementById('choiceField').value = 'Accepterat erbjudande (449:-/mån Vuxen + PT + InBody)';
+  goToStep(3);
 }
 
 // Ratings
@@ -435,16 +435,35 @@ function validateStep3() {
 
   // Build summary
   const box = document.getElementById('summaryBox');
-  box.innerHTML = `
-    <div class="summary-choice">Uppsägning</div>
-    <div class="summary-row"><span class="s-label">Namn</span><span class="s-value">${name}</span></div>
-    <div class="summary-row"><span class="s-label">E-post</span><span class="s-value">${email}</span></div>
-    <div class="summary-row"><span class="s-label">Telefon</span><span class="s-value">${phone}</span></div>
-    <div class="summary-row"><span class="s-label">Personnummer</span><span class="s-value">${pnr}</span></div>
-    <div class="summary-row"><span class="s-label">Service</span><span class="s-value">${document.getElementById('service_rating').value}/5</span></div>
-    <div class="summary-row"><span class="s-label">Faciliteter</span><span class="s-value">${document.getElementById('facility_rating').value}/5</span></div>
-    <div class="summary-row"><span class="s-label">Anledning</span><span class="s-value">${document.getElementById('reason').value}</span></div>
-  `;
+  if (isOffer) {
+    box.innerHTML = `
+      <div class="summary-choice" style="background:rgba(0,212,255,.12);color:#00d4ff">Erbjudande — 449:-/mån</div>
+      <div class="summary-row"><span class="s-label">Namn</span><span class="s-value">${name}</span></div>
+      <div class="summary-row"><span class="s-label">E-post</span><span class="s-value">${email}</span></div>
+      <div class="summary-row"><span class="s-label">Telefon</span><span class="s-value">${phone}</span></div>
+      <div class="summary-row"><span class="s-label">Personnummer</span><span class="s-value">${pnr}</span></div>
+      <div class="summary-row"><span class="s-label">Inkluderar</span><span class="s-value">PT-timme + InBody</span></div>
+    `;
+    document.querySelector('.confirm-title').textContent = 'Bekräfta erbjudande.';
+    document.querySelector('.confirm-sub').textContent = 'Kontrollera att uppgifterna stämmer. Vi kontaktar dig för att aktivera dina nya villkor.';
+    document.getElementById('submitBtn').textContent = 'Bekräfta erbjudande';
+    document.querySelector('.consent span').textContent = 'Härmed godkänner jag att STOLT GYM AB hanterar mina uppgifter enligt företagets riktlinjer samt att jag vill binda om mig i 12 månader till erbjudandets villkor.';
+  } else {
+    box.innerHTML = `
+      <div class="summary-choice">Uppsägning</div>
+      <div class="summary-row"><span class="s-label">Namn</span><span class="s-value">${name}</span></div>
+      <div class="summary-row"><span class="s-label">E-post</span><span class="s-value">${email}</span></div>
+      <div class="summary-row"><span class="s-label">Telefon</span><span class="s-value">${phone}</span></div>
+      <div class="summary-row"><span class="s-label">Personnummer</span><span class="s-value">${pnr}</span></div>
+      <div class="summary-row"><span class="s-label">Service</span><span class="s-value">${document.getElementById('service_rating').value}/5</span></div>
+      <div class="summary-row"><span class="s-label">Faciliteter</span><span class="s-value">${document.getElementById('facility_rating').value}/5</span></div>
+      <div class="summary-row"><span class="s-label">Anledning</span><span class="s-value">${document.getElementById('reason').value}</span></div>
+    `;
+    document.querySelector('.confirm-title').textContent = 'Bekräfta uppsägning.';
+    document.querySelector('.confirm-sub').textContent = 'Kontrollera att uppgifterna stämmer. Uppsägningen har 3 månaders uppsägningstid från nästa månadsskifte.';
+    document.getElementById('submitBtn').textContent = 'Skicka uppsägning';
+    document.querySelector('.consent span').textContent = 'Härmed godkänner jag att STOLT GYM AB hanterar mina uppgifter enligt företagets riktlinjer samt att mitt medlemskap sägs upp i enlighet med gällande villkor.';
+  }
   goToStep(4);
 }
 
@@ -452,18 +471,20 @@ function validateStep3() {
 const canvas = document.getElementById('sigCanvas');
 const ctx = canvas.getContext('2d');
 let drawing = false;
+let sigInitialized = false;
 
-function resizeCanvas() {
+function initSignature() {
+  if (sigInitialized) return;
   const rect = canvas.getBoundingClientRect();
+  if (rect.width === 0) return;
   canvas.width = rect.width * 2;
   canvas.height = rect.height * 2;
   ctx.scale(2, 2);
   ctx.strokeStyle = '#f5f5f5';
   ctx.lineWidth = 2;
   ctx.lineCap = 'round';
+  sigInitialized = true;
 }
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
 
 function getPos(e) {
   const rect = canvas.getBoundingClientRect();
@@ -480,7 +501,8 @@ canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!drawing) re
 canvas.addEventListener('touchend', () => drawing = false);
 
 function clearSignature() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const rect = canvas.getBoundingClientRect();
+  ctx.clearRect(0, 0, rect.width, rect.height);
 }
 
 // Form submit
@@ -492,6 +514,11 @@ document.getElementById('cancelForm').addEventListener('submit', function(e) {
     return;
   }
 
+  // Update subject based on choice
+  if (isOffer) {
+    this.querySelector('[name="_subject"]').value = 'ERBJUDANDE ACCEPTERAT — Stolt Gym';
+  }
+
   // Save signature
   document.getElementById('signatureData').value = canvas.toDataURL();
 
@@ -499,20 +526,22 @@ document.getElementById('cancelForm').addEventListener('submit', function(e) {
   btn.textContent = 'Skickar...';
   btn.disabled = true;
 
+  const successId = isOffer ? 'stepOffer' : 'stepSuccess';
+
   fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } })
     .then(r => {
       document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
       document.getElementById('progress').style.display = 'none';
-      const success = document.getElementById('stepSuccess');
-      success.style.display = 'block';
-      setTimeout(() => success.classList.add('active'), 10);
+      const el = document.getElementById(successId);
+      el.style.display = 'block';
+      setTimeout(() => el.classList.add('active'), 10);
     })
     .catch(() => {
       document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
       document.getElementById('progress').style.display = 'none';
-      const success = document.getElementById('stepSuccess');
-      success.style.display = 'block';
-      setTimeout(() => success.classList.add('active'), 10);
+      const el = document.getElementById(successId);
+      el.style.display = 'block';
+      setTimeout(() => el.classList.add('active'), 10);
     });
 });
 </script>
