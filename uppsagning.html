@@ -278,7 +278,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
         <span id="consentText">Härmed godkänner jag att STOLT GYM AB hanterar mina uppgifter enligt företagets riktlinjer samt att mitt medlemskap sägs upp i enlighet med gällande villkor.</span>
       </label>
 
-      <button type="submit" class="btn-primary" id="submitBtn">Skicka uppsägning</button>
+      <button type="button" class="btn-primary" id="submitBtn" onclick="submitForm()">Skicka uppsägning</button>
     </div>
   </form>
 
@@ -478,21 +478,21 @@ function clearSignature() {
 }
 
 // Form submit
-document.getElementById('cancelForm').addEventListener('submit', function(e) {
-  e.preventDefault();
+function submitForm() {
   if (!document.getElementById('consentCheck').checked) {
     alert('Du behöver godkänna villkoren.');
     return;
   }
   if (isOffer) {
-    this.querySelector('[name="_subject"]').value = 'ERBJUDANDE ACCEPTERAT — Stolt Gym';
+    document.querySelector('[name="_subject"]').value = 'ERBJUDANDE ACCEPTERAT — Stolt Gym';
   }
   document.getElementById('signatureData').value = canvas.toDataURL();
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Skickar...';
   btn.disabled = true;
+  const form = document.getElementById('cancelForm');
   const successId = isOffer ? 'stepOffer' : 'stepSuccess';
-  fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } })
+  fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
     .then(() => {
       document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
       document.getElementById('progress').style.display = 'none';
@@ -507,7 +507,7 @@ document.getElementById('cancelForm').addEventListener('submit', function(e) {
       el.style.display = 'block';
       setTimeout(() => el.classList.add('active'), 10);
     });
-});
+}
 </script>
 </body>
 </html>
