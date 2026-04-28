@@ -788,6 +788,107 @@
       text-align: center;
     }
 
+    /* ===== ÖPPETTIDER ===== */
+    .hours-section {
+      text-align: center;
+      padding: 80px 24px;
+      background: var(--dark);
+    }
+    .hours-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+    .hours-tab {
+      background: transparent;
+      color: var(--white-soft);
+      border: 1px solid var(--dark-border);
+      padding: 10px 28px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: all 0.3s;
+    }
+    .hours-tab.active {
+      background: var(--accent);
+      color: var(--black);
+      border-color: var(--accent);
+    }
+    .hours-group { display: none; }
+    .hours-group.active { display: block; }
+    .hours-grid {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      text-align: left;
+    }
+    @media (max-width: 600px) {
+      .hours-grid { grid-template-columns: 1fr; }
+    }
+    .hours-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .hours-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .hours-date-range {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .hours-badge {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--black);
+      background: var(--accent);
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-day {
+      font-size: 13px;
+      color: var(--white-soft);
+    }
+    .hours-time {
+      font-size: 13px;
+      color: var(--white);
+      font-weight: 500;
+      text-align: right;
+    }
+    .hours-note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--white-soft);
+      opacity: 0.6;
+    }
+
     /* ===== FOOTER ===== */
     footer {
       background: var(--dark);
@@ -1301,6 +1402,67 @@
     <a href="https://api.leadconnectorhq.com/widget/form/f2IHZ1oN9aU6aHlu23GN" class="btn-primary reveal" style="display: inline-flex;">Registrera Här</a>
   </section>
 
+  <!-- ===== ÖPPETTIDER ===== -->
+  <section class="hours-section" id="hours">
+    <span class="section-tag reveal">Öppettider</span>
+    <h2 class="section-title reveal">NÄR VI HAR<br>ÖPPET.</h2>
+
+    <div class="hours-tabs reveal">
+      <button class="hours-tab active" onclick="showHours('skogas')">Skogås</button>
+      <button class="hours-tab" onclick="showHours('trangsund')">Trångsund</button>
+    </div>
+
+    <!-- Skogås -->
+    <div class="hours-group active" id="hours-skogas">
+      <div class="hours-grid reveal">
+        <div class="hours-card">
+          <h3 class="hours-card-title">Öppettider</h3>
+          <div class="hours-row">
+            <span class="hours-day">Alla dagar året runt</span>
+            <span class="hours-time">05:45–22:00</span>
+          </div>
+        </div>
+        <div class="hours-card">
+          <h3 class="hours-card-title">Bemannade tider</h3>
+          <div class="hours-row"><span class="hours-day">Måndag–onsdag</span><span class="hours-time">12:00–21:00</span></div>
+          <div class="hours-row"><span class="hours-day">Torsdag</span><span class="hours-time">11:00–21:00</span></div>
+          <div class="hours-row"><span class="hours-day">Fredag</span><span class="hours-time">10:45–20:00</span></div>
+          <div class="hours-row"><span class="hours-day">Lördag</span><span class="hours-time">10:00–16:00</span></div>
+          <div class="hours-row"><span class="hours-day">Söndag</span><span class="hours-time">11:00–18:00</span></div>
+        </div>
+        <div class="hours-card">
+          <h3 class="hours-card-title">Avvikande tider</h3>
+          <div class="hours-row"><span class="hours-day">30/4 Valborg</span><span class="hours-time">11:00–18:00</span></div>
+          <div class="hours-row"><span class="hours-day">1/5</span><span class="hours-time">Obemannat</span></div>
+          <div class="hours-row"><span class="hours-day">14/5 Kristi himmelsfärd</span><span class="hours-time">17:00–21:00</span></div>
+          <div class="hours-row"><span class="hours-day">6/6 Nationaldagen</span><span class="hours-time">Obemannat</span></div>
+          <div class="hours-row"><span class="hours-day">19/6 Midsommarafton</span><span class="hours-time">Obemannat</span></div>
+          <div class="hours-row"><span class="hours-day">20/6 Midsommardagen</span><span class="hours-time">12:00–16:00</span></div>
+          <div class="hours-row"><span class="hours-day">21/6</span><span class="hours-time">13:00–18:00</span></div>
+        </div>
+        <div class="hours-card">
+          <h3 class="hours-card-title">Sommartider bemannat<span class="hours-date-range">27/6–16/8</span></h3>
+          <div class="hours-row"><span class="hours-day">Måndag–torsdag</span><span class="hours-time">10:00–13:00 &amp; 16:30–20:30</span></div>
+          <div class="hours-row"><span class="hours-day">Fredag</span><span class="hours-time">10:00–13:00 &amp; 16:30–20:00</span></div>
+          <div class="hours-row"><span class="hours-day">Lördag</span><span class="hours-time">12:00–16:00</span></div>
+          <div class="hours-row"><span class="hours-day">Söndag</span><span class="hours-time">12:00–17:00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trångsund -->
+    <div class="hours-group" id="hours-trangsund">
+      <div class="hours-grid reveal">
+        <div class="hours-card">
+          <h3 class="hours-card-title">Öppettider<span class="hours-badge">Obemannat gym</span></h3>
+          <div class="hours-row"><span class="hours-day">Måndag–fredag</span><span class="hours-time">06:00–22:00</span></div>
+          <div class="hours-row"><span class="hours-day">Lördag–söndag</span><span class="hours-time">08:00–22:00</span></div>
+          <p class="hours-note">Gäller alla dagar året runt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== FOOTER ===== -->
   <footer id="contact">
     <div class="footer-inner">
@@ -1326,6 +1488,7 @@
         <a href="coming-soon.html">Personlig Träning</a>
         <a href="coming-soon.html">Shop</a>
         <a href="coming-soon.html">Lediga Tjänster</a>
+        <a href="#hours">Öppettider</a>
       </div>
       <div class="footer-col">
         <h5>Kontakt</h5>
@@ -1388,6 +1551,19 @@
         document.getElementById('pricing-bottom-trangsund').classList.add('active');
         section.querySelector('.pricing-tab:last-child').classList.add('active');
         if(altLink) altLink.href='https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RZDQjF5Jl3P0EPHsnWuCDbVKl&action=membership&valdanlaggning=2';
+      }
+    }
+
+    // ===== HOURS TABS =====
+    function showHours(type) {
+      document.querySelectorAll('.hours-group').forEach(g => g.classList.remove('active'));
+      document.querySelectorAll('.hours-tab').forEach(t => t.classList.remove('active'));
+      if (type === 'skogas') {
+        document.getElementById('hours-skogas').classList.add('active');
+        document.querySelector('.hours-tab:first-child').classList.add('active');
+      } else {
+        document.getElementById('hours-trangsund').classList.add('active');
+        document.querySelector('.hours-tab:last-child').classList.add('active');
       }
     }
 
