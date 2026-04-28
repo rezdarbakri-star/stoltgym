@@ -15,42 +15,18 @@
   --orange:#ff6b35;--green:#22c55e;--red:#ef4444;
 }
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
-
 .form-wrapper{max-width:520px;width:100%;position:relative}
-
-/* Logo */
 .form-logo{text-align:center;margin-bottom:40px}
 .form-logo img{height:36px;filter:invert(1);opacity:.7}
-
-/* Progress */
 .progress{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:40px}
 .progress-dot{width:8px;height:8px;border-radius:50%;background:var(--dark-border);transition:all .4s}
 .progress-dot.active{background:var(--accent);box-shadow:0 0 12px rgba(0,212,255,.3)}
 .progress-dot.done{background:var(--green)}
 .progress-line{width:32px;height:1px;background:var(--dark-border);transition:background .4s}
 .progress-line.active{background:var(--accent)}
-
-/* Steps */
 .step{display:none;animation:fadeIn .5s ease}
 .step.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-/* Step 1 — Retention */
-.retention-badge{display:inline-block;background:var(--orange);color:var(--black);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 16px;border-radius:99px;margin-bottom:24px}
-.retention-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,7vw,3.2rem);line-height:1.1;margin-bottom:16px;text-align:center}
-.retention-title span{color:var(--accent)}
-.retention-desc{font-size:15px;color:var(--white-soft);line-height:1.7;text-align:center;margin-bottom:32px}
-.retention-desc strong{color:var(--white);font-weight:600}
-
-.offer-card{background:var(--dark-card);border:1px solid var(--accent);border-radius:16px;padding:32px 24px;text-align:center;margin-bottom:32px;position:relative;overflow:hidden}
-.offer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--green))}
-.offer-price{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--accent);line-height:1}
-.offer-price small{font-size:1.2rem;color:var(--white-soft)}
-.offer-was{font-size:13px;color:var(--white-soft);text-decoration:line-through;margin-top:4px}
-.offer-perks{margin-top:20px;display:flex;flex-direction:column;gap:10px;text-align:left}
-.offer-perk{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--white)}
-.offer-perk svg{width:18px;height:18px;stroke:var(--green);flex-shrink:0}
-.offer-note{font-size:12px;color:var(--white-soft);margin-top:16px;opacity:.7}
 
 /* Buttons */
 .btn-row{display:flex;flex-direction:column;gap:12px}
@@ -64,56 +40,62 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .btn-secondary{background:var(--dark-card);color:var(--white);border:1px solid var(--dark-border);padding:16px 32px;font-size:15px;font-weight:500;border-radius:12px;cursor:pointer;transition:all .3s;text-align:center;display:block;width:100%}
 .btn-secondary:hover{border-color:var(--white-soft)}
 
-/* Step 2 — Survey */
+/* Step 1 — Info */
+.info-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-bottom:8px}
+.info-sub{font-size:14px;color:var(--white-soft);margin-bottom:32px;line-height:1.6}
+.field{margin-bottom:20px}
+.field label{display:block;font-size:13px;font-weight:500;margin-bottom:8px;color:var(--white-soft)}
+.field input,.field textarea,.field select{width:100%;padding:14px 16px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:12px;color:var(--white);font-size:14px;font-family:inherit;transition:border-color .3s;outline:none}
+.field input:focus,.field textarea:focus{border-color:var(--accent)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(176,176,176,.5)}
+.field textarea{resize:vertical;min-height:80px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* Step 2 — Retention */
+.retention-badge{display:inline-block;background:var(--orange);color:var(--black);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 16px;border-radius:99px;margin-bottom:24px}
+.retention-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,7vw,3.2rem);line-height:1.1;margin-bottom:16px;text-align:center}
+.retention-title span{color:var(--accent)}
+.retention-desc{font-size:15px;color:var(--white-soft);line-height:1.7;text-align:center;margin-bottom:32px}
+.offer-card{background:var(--dark-card);border:1px solid var(--accent);border-radius:16px;padding:32px 24px;text-align:center;margin-bottom:32px;position:relative;overflow:hidden}
+.offer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--green))}
+.offer-price{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--accent);line-height:1}
+.offer-price small{font-size:1.2rem;color:var(--white-soft)}
+.offer-was{font-size:13px;color:var(--white-soft);text-decoration:line-through;margin-top:4px}
+.offer-perks{margin-top:20px;display:flex;flex-direction:column;gap:10px;text-align:left}
+.offer-perk{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--white)}
+.offer-perk svg{width:18px;height:18px;stroke:var(--green);flex-shrink:0}
+.offer-note{font-size:12px;color:var(--white-soft);margin-top:16px;opacity:.7}
+
+/* Step 3 — Survey */
 .survey-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-bottom:8px}
 .survey-sub{font-size:14px;color:var(--white-soft);margin-bottom:32px;line-height:1.6}
-
 .question{margin-bottom:28px}
 .question label{display:block;font-size:14px;font-weight:500;margin-bottom:12px}
 .question label span{color:var(--accent)}
-
 .rating-row{display:flex;gap:8px}
 .rating-btn{width:48px;height:48px;border-radius:12px;border:1px solid var(--dark-border);background:var(--dark-card);color:var(--white);font-size:16px;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center}
 .rating-btn:hover{border-color:var(--accent)}
 .rating-btn.selected{background:var(--accent);color:var(--black);border-color:var(--accent)}
-
 .reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .reason-btn{padding:12px 16px;border-radius:12px;border:1px solid var(--dark-border);background:var(--dark-card);color:var(--white-soft);font-size:13px;cursor:pointer;transition:all .3s;text-align:left}
 .reason-btn:hover{border-color:var(--accent);color:var(--white)}
 .reason-btn.selected{border-color:var(--accent);background:var(--accent-dim);color:var(--white)}
 
-/* Step 3 — Info */
-.info-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-bottom:8px}
-.info-sub{font-size:14px;color:var(--white-soft);margin-bottom:32px}
-
-.field{margin-bottom:20px}
-.field label{display:block;font-size:13px;font-weight:500;margin-bottom:8px;color:var(--white-soft)}
-.field input,.field textarea,.field select{width:100%;padding:14px 16px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:12px;color:var(--white);font-size:14px;font-family:inherit;transition:border-color .3s;outline:none}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
-.field input::placeholder,.field textarea::placeholder{color:rgba(176,176,176,.5)}
-.field textarea{resize:vertical;min-height:80px}
-.field select{appearance:none;cursor:pointer}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
 /* Step 4 — Confirm */
 .confirm-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-bottom:8px}
 .confirm-sub{font-size:14px;color:var(--white-soft);margin-bottom:32px;line-height:1.6}
-
 .signature-area{margin-bottom:24px}
 .signature-area label{display:block;font-size:13px;font-weight:500;margin-bottom:8px;color:var(--white-soft)}
 .signature-pad{width:100%;height:150px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:12px;cursor:crosshair;touch-action:none}
 .sig-clear{font-size:12px;color:var(--accent);cursor:pointer;background:none;border:none;margin-top:8px;text-decoration:underline}
-
 .consent{display:flex;align-items:flex-start;gap:12px;margin-bottom:28px;cursor:pointer}
 .consent input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);flex-shrink:0;margin-top:2px;cursor:pointer}
 .consent span{font-size:13px;color:var(--white-soft);line-height:1.5}
-
-/* Summary */
 .summary{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:12px;padding:20px;margin-bottom:24px}
 .summary-row{display:flex;justify-content:space-between;padding:6px 0;font-size:13px}
 .summary-row .s-label{color:var(--white-soft)}
 .summary-row .s-value{color:var(--white);font-weight:500}
-.summary-choice{display:inline-block;background:var(--accent-dim);color:var(--accent);font-size:12px;font-weight:600;padding:4px 12px;border-radius:99px;margin-bottom:16px}
+.summary-choice{display:inline-block;font-size:12px;font-weight:600;padding:4px 12px;border-radius:99px;margin-bottom:16px}
 
 /* Success */
 .success{text-align:center;padding:60px 0}
@@ -122,11 +104,6 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .success h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:12px}
 .success p{font-size:14px;color:var(--white-soft);line-height:1.7;max-width:380px;margin:0 auto}
 
-/* Error */
-.field-error{border-color:var(--red) !important}
-.error-msg{font-size:12px;color:var(--red);margin-top:6px;display:none}
-
-/* Footer */
 .form-footer{text-align:center;margin-top:48px;font-size:11px;color:rgba(176,176,176,.4)}
 .form-footer a{color:rgba(176,176,176,.5);text-decoration:none;border-bottom:1px solid rgba(176,176,176,.15)}
 
@@ -140,12 +117,10 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 <body>
 
 <div class="form-wrapper">
-  <!-- Logo -->
   <div class="form-logo">
     <img src="https://rezdar.com/stoltgym/images/stoltgym.png" alt="Stolt Gym">
   </div>
 
-  <!-- Progress -->
   <div class="progress" id="progress">
     <div class="progress-dot active" data-step="1"></div>
     <div class="progress-line"></div>
@@ -157,17 +132,52 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
   </div>
 
   <form id="cancelForm" action="https://formspree.io/f/mojyozae" method="POST">
-    <!-- Hidden fields for email routing -->
     <input type="hidden" name="_subject" value="Uppsägning / Erbjudande — Stolt Gym">
     <input type="hidden" name="_cc" value="tilde@stoltgym.se">
     <input type="hidden" name="_replyto" id="replyTo">
+    <input type="hidden" name="choice" id="choiceField" value="Uppsägning">
+    <input type="hidden" name="service_rating" id="service_rating">
+    <input type="hidden" name="facility_rating" id="facility_rating">
+    <input type="hidden" name="reason" id="reason">
+    <input type="hidden" name="signature" id="signatureData">
 
-    <!-- ════════ STEP 1: RETENTION ════════ -->
+    <!-- ════════ STEP 1: PERSONAL INFO ════════ -->
     <div class="step active" id="step1">
+      <h2 class="info-title">Uppsägning.</h2>
+      <p class="info-sub">Fyll i dina uppgifter för att påbörja din uppsägning.</p>
+
+      <div class="field">
+        <label>Fullständigt namn *</label>
+        <input type="text" name="name" id="nameField" placeholder="Förnamn Efternamn" required>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>E-post *</label>
+          <input type="email" name="email" id="emailField" placeholder="din@email.se" required>
+        </div>
+        <div class="field">
+          <label>Mobilnummer *</label>
+          <input type="tel" name="phone" id="phoneField" placeholder="070-000 00 00" required>
+        </div>
+      </div>
+      <div class="field">
+        <label>Personnummer *</label>
+        <input type="text" name="personnummer" id="pnrField" placeholder="ÅÅÅÅ-MM-DD" required>
+      </div>
+      <div class="field">
+        <label>Meddelande</label>
+        <textarea name="message" placeholder="Valfritt meddelande..."></textarea>
+      </div>
+
+      <button type="button" class="btn-primary" onclick="validateStep1()">Fortsätt</button>
+    </div>
+
+    <!-- ════════ STEP 2: RETENTION OFFER ════════ -->
+    <div class="step" id="step2">
       <div style="text-align:center">
-        <div class="retention-badge">Vänta — läs detta först</div>
+        <div class="retention-badge">Vänta — innan vi går vidare</div>
         <h1 class="retention-title">Vi vill inte<br>förlora <span>dig</span> 💙</h1>
-        <p class="retention-desc">Innan du bestämmer dig — vi har ett exklusivt erbjudande till dig som befintlig medlem. Bind om dig och få en extra boost till träningen.</p>
+        <p class="retention-desc">Vi har ett exklusivt erbjudande till dig som befintlig medlem. Bind om dig och få en extra boost till träningen.</p>
       </div>
 
       <div class="offer-card">
@@ -192,13 +202,13 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 
       <div class="btn-row">
         <button type="button" class="btn-primary" onclick="acceptOffer()">Jag vill ta erbjudandet</button>
-        <button type="button" class="btn-ghost" onclick="goToStep(2)">Fortsätt med uppsägning</button>
+        <button type="button" class="btn-ghost" onclick="goToStep(3)">Fortsätt med uppsägning</button>
       </div>
     </div>
 
-    <!-- ════════ STEP 2: SURVEY ════════ -->
-    <div class="step" id="step2">
-      <button type="button" class="btn-back" onclick="goToStep(1)">
+    <!-- ════════ STEP 3: SURVEY ════════ -->
+    <div class="step" id="step3">
+      <button type="button" class="btn-back" onclick="goToStep(2)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Tillbaka
       </button>
@@ -215,7 +225,6 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
           <button type="button" class="rating-btn" data-val="4" onclick="selectRating(this,'ratingService','service_rating')">4</button>
           <button type="button" class="rating-btn" data-val="5" onclick="selectRating(this,'ratingService','service_rating')">5</button>
         </div>
-        <input type="hidden" name="service_rating" id="service_rating">
       </div>
 
       <div class="question">
@@ -227,7 +236,6 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
           <button type="button" class="rating-btn" data-val="4" onclick="selectRating(this,'ratingFacility','facility_rating')">4</button>
           <button type="button" class="rating-btn" data-val="5" onclick="selectRating(this,'ratingFacility','facility_rating')">5</button>
         </div>
-        <input type="hidden" name="facility_rating" id="facility_rating">
       </div>
 
       <div class="question">
@@ -242,61 +250,22 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
           <button type="button" class="reason-btn" onclick="selectReason(this)">Byter gym</button>
           <button type="button" class="reason-btn" onclick="selectReason(this)">Annat</button>
         </div>
-        <input type="hidden" name="reason" id="reason">
       </div>
 
-      <button type="button" class="btn-primary" onclick="validateStep2()">Fortsätt</button>
-    </div>
-
-    <!-- ════════ STEP 3: PERSONAL INFO ════════ -->
-    <div class="step" id="step3">
-      <button type="button" class="btn-back" onclick="goToStep(isOffer?1:2)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Tillbaka
-      </button>
-
-      <h2 class="info-title">Dina uppgifter.</h2>
-      <p class="info-sub" id="infoSub">Vi behöver dina uppgifter för att behandla din förfrågan.</p>
-
-      <div class="field">
-        <label>Fullständigt namn *</label>
-        <input type="text" name="name" id="nameField" placeholder="Förnamn Efternamn" required>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label>E-post *</label>
-          <input type="email" name="email" id="emailField" placeholder="din@email.se" required>
-        </div>
-        <div class="field">
-          <label>Mobilnummer *</label>
-          <input type="tel" name="phone" id="phoneField" placeholder="070-000 00 00" required>
-        </div>
-      </div>
-      <div class="field">
-        <label>Personnummer *</label>
-        <input type="text" name="personnummer" id="pnrField" placeholder="ÅÅÅÅ-MM-DD" required>
-      </div>
-      <div class="field">
-        <label>Finns det något du vill meddela oss?</label>
-        <textarea name="message" placeholder="Valfritt meddelande..."></textarea>
-      </div>
-
-      <button type="button" class="btn-primary" onclick="validateStep3()" id="step3Btn">Granska</button>
+      <button type="button" class="btn-primary" onclick="validateStep3()">Fortsätt</button>
     </div>
 
     <!-- ════════ STEP 4: CONFIRM ════════ -->
     <div class="step" id="step4">
-      <button type="button" class="btn-back" onclick="goToStep(3)">
+      <button type="button" class="btn-back" onclick="goToStep(isOffer?2:3)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Tillbaka
       </button>
 
-      <h2 class="confirm-title">Bekräfta uppsägning.</h2>
-      <p class="confirm-sub">Kontrollera att uppgifterna stämmer. Uppsägningen har 3 månaders uppsägningstid från nästa månadsskifte.</p>
+      <h2 class="confirm-title" id="confirmTitle">Bekräfta uppsägning.</h2>
+      <p class="confirm-sub" id="confirmSub">Kontrollera att uppgifterna stämmer. Uppsägningen har 3 månaders uppsägningstid från nästa månadsskifte.</p>
 
-      <div class="summary" id="summaryBox">
-        <!-- Filled by JS -->
-      </div>
+      <div class="summary" id="summaryBox"></div>
 
       <div class="signature-area">
         <label>Signera nedan *</label>
@@ -306,17 +275,14 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 
       <label class="consent">
         <input type="checkbox" id="consentCheck" required>
-        <span>Härmed godkänner jag att STOLT GYM AB hanterar mina uppgifter enligt företagets riktlinjer samt att mitt medlemskap sägs upp i enlighet med gällande villkor.</span>
+        <span id="consentText">Härmed godkänner jag att STOLT GYM AB hanterar mina uppgifter enligt företagets riktlinjer samt att mitt medlemskap sägs upp i enlighet med gällande villkor.</span>
       </label>
-
-      <input type="hidden" name="choice" id="choiceField" value="Uppsägning">
-      <input type="hidden" name="signature" id="signatureData">
 
       <button type="submit" class="btn-primary" id="submitBtn">Skicka uppsägning</button>
     </div>
   </form>
 
-  <!-- ════════ STEP: OFFER ACCEPTED ════════ -->
+  <!-- ════════ SUCCESS: OFFER ════════ -->
   <div class="step" id="stepOffer" style="display:none">
     <div class="success">
       <div class="success-icon">
@@ -327,7 +293,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
     </div>
   </div>
 
-  <!-- ════════ STEP: SUCCESS ════════ -->
+  <!-- ════════ SUCCESS: CANCELLATION ════════ -->
   <div class="step" id="stepSuccess" style="display:none">
     <div class="success">
       <div class="success-icon">
@@ -345,6 +311,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 
 <script>
 let currentStep = 1;
+let isOffer = false;
 
 function goToStep(n) {
   document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
@@ -357,16 +324,15 @@ function goToStep(n) {
 }
 
 function updateProgress(n) {
-  // Hide 4th dot + line if offer path (3 steps)
   const dots = document.querySelectorAll('.progress-dot');
   const lines = document.querySelectorAll('.progress-line');
   if (isOffer) {
-    dots[1].style.display = 'none';
-    lines[0].style.display = 'none';
-    // Map steps: 1→1, 3→2, 4→3
-    const mapped = n === 1 ? 1 : n === 3 ? 2 : 3;
-    const visibleDots = [dots[0], dots[2], dots[3]];
-    const visibleLines = [lines[1], lines[2]];
+    // 3 steps: info(1) → offer(2) → confirm(4), hide step 3 dot
+    dots[2].style.display = 'none';
+    lines[1].style.display = 'none';
+    const mapped = n === 1 ? 1 : n === 2 ? 2 : 3;
+    const visibleDots = [dots[0], dots[1], dots[3]];
+    const visibleLines = [lines[0], lines[2]];
     visibleDots.forEach((d, i) => {
       d.classList.remove('active', 'done');
       if (i + 1 < mapped) d.classList.add('done');
@@ -374,8 +340,8 @@ function updateProgress(n) {
     });
     visibleLines.forEach((l, i) => { l.classList.toggle('active', i < mapped - 1); });
   } else {
-    dots[1].style.display = '';
-    lines[0].style.display = '';
+    dots[2].style.display = '';
+    lines[1].style.display = '';
     dots.forEach((d, i) => {
       d.classList.remove('active', 'done');
       if (i + 1 < n) d.classList.add('done');
@@ -385,12 +351,26 @@ function updateProgress(n) {
   }
 }
 
-// Step 1 — Accept offer
-let isOffer = false;
+// Step 1 — Validate info
+function validateStep1() {
+  const name = document.getElementById('nameField').value.trim();
+  const email = document.getElementById('emailField').value.trim();
+  const phone = document.getElementById('phoneField').value.trim();
+  const pnr = document.getElementById('pnrField').value.trim();
+  if (!name || !email || !phone || !pnr) {
+    alert('Vänligen fyll i alla obligatoriska fält.');
+    return;
+  }
+  document.getElementById('replyTo').value = email;
+  goToStep(2);
+}
+
+// Step 2 — Accept offer
 function acceptOffer() {
   isOffer = true;
   document.getElementById('choiceField').value = 'Accepterat erbjudande (449:-/mån Vuxen + PT + InBody)';
-  goToStep(3);
+  buildSummary();
+  goToStep(4);
 }
 
 // Ratings
@@ -407,8 +387,8 @@ function selectReason(btn) {
   document.getElementById('reason').value = btn.textContent;
 }
 
-// Validate step 2
-function validateStep2() {
+// Step 3 — Validate survey
+function validateStep3() {
   const s = document.getElementById('service_rating').value;
   const f = document.getElementById('facility_rating').value;
   const r = document.getElementById('reason').value;
@@ -416,25 +396,18 @@ function validateStep2() {
     alert('Vänligen svara på alla frågor.');
     return;
   }
-  goToStep(3);
+  buildSummary();
+  goToStep(4);
 }
 
-// Validate step 3
-function validateStep3() {
+// Build summary for step 4
+function buildSummary() {
   const name = document.getElementById('nameField').value.trim();
   const email = document.getElementById('emailField').value.trim();
   const phone = document.getElementById('phoneField').value.trim();
   const pnr = document.getElementById('pnrField').value.trim();
-
-  if (!name || !email || !phone || !pnr) {
-    alert('Vänligen fyll i alla obligatoriska fält.');
-    return;
-  }
-
-  document.getElementById('replyTo').value = email;
-
-  // Build summary
   const box = document.getElementById('summaryBox');
+
   if (isOffer) {
     box.innerHTML = `
       <div class="summary-choice" style="background:rgba(0,212,255,.12);color:#00d4ff">Erbjudande — 449:-/mån</div>
@@ -444,13 +417,13 @@ function validateStep3() {
       <div class="summary-row"><span class="s-label">Personnummer</span><span class="s-value">${pnr}</span></div>
       <div class="summary-row"><span class="s-label">Inkluderar</span><span class="s-value">PT-timme + InBody</span></div>
     `;
-    document.querySelector('.confirm-title').textContent = 'Bekräfta erbjudande.';
-    document.querySelector('.confirm-sub').textContent = 'Kontrollera att uppgifterna stämmer. Vi kontaktar dig för att aktivera dina nya villkor.';
+    document.getElementById('confirmTitle').textContent = 'Bekräfta erbjudande.';
+    document.getElementById('confirmSub').textContent = 'Kontrollera att uppgifterna stämmer. Vi kontaktar dig för att aktivera dina nya villkor.';
     document.getElementById('submitBtn').textContent = 'Bekräfta erbjudande';
-    document.querySelector('.consent span').textContent = 'Härmed godkänner jag att STOLT GYM AB hanterar mina uppgifter enligt företagets riktlinjer samt att jag vill binda om mig i 12 månader till erbjudandets villkor.';
+    document.getElementById('consentText').textContent = 'Härmed godkänner jag att STOLT GYM AB hanterar mina uppgifter enligt företagets riktlinjer samt att jag vill binda om mig i 12 månader till erbjudandets villkor.';
   } else {
     box.innerHTML = `
-      <div class="summary-choice">Uppsägning</div>
+      <div class="summary-choice" style="background:rgba(239,68,68,.12);color:#ef4444">Uppsägning</div>
       <div class="summary-row"><span class="s-label">Namn</span><span class="s-value">${name}</span></div>
       <div class="summary-row"><span class="s-label">E-post</span><span class="s-value">${email}</span></div>
       <div class="summary-row"><span class="s-label">Telefon</span><span class="s-value">${phone}</span></div>
@@ -459,12 +432,11 @@ function validateStep3() {
       <div class="summary-row"><span class="s-label">Faciliteter</span><span class="s-value">${document.getElementById('facility_rating').value}/5</span></div>
       <div class="summary-row"><span class="s-label">Anledning</span><span class="s-value">${document.getElementById('reason').value}</span></div>
     `;
-    document.querySelector('.confirm-title').textContent = 'Bekräfta uppsägning.';
-    document.querySelector('.confirm-sub').textContent = 'Kontrollera att uppgifterna stämmer. Uppsägningen har 3 månaders uppsägningstid från nästa månadsskifte.';
+    document.getElementById('confirmTitle').textContent = 'Bekräfta uppsägning.';
+    document.getElementById('confirmSub').textContent = 'Kontrollera att uppgifterna stämmer. Uppsägningen har 3 månaders uppsägningstid från nästa månadsskifte.';
     document.getElementById('submitBtn').textContent = 'Skicka uppsägning';
-    document.querySelector('.consent span').textContent = 'Härmed godkänner jag att STOLT GYM AB hanterar mina uppgifter enligt företagets riktlinjer samt att mitt medlemskap sägs upp i enlighet med gällande villkor.';
+    document.getElementById('consentText').textContent = 'Härmed godkänner jag att STOLT GYM AB hanterar mina uppgifter enligt företagets riktlinjer samt att mitt medlemskap sägs upp i enlighet med gällande villkor.';
   }
-  goToStep(4);
 }
 
 // Signature pad
@@ -508,28 +480,20 @@ function clearSignature() {
 // Form submit
 document.getElementById('cancelForm').addEventListener('submit', function(e) {
   e.preventDefault();
-
   if (!document.getElementById('consentCheck').checked) {
     alert('Du behöver godkänna villkoren.');
     return;
   }
-
-  // Update subject based on choice
   if (isOffer) {
     this.querySelector('[name="_subject"]').value = 'ERBJUDANDE ACCEPTERAT — Stolt Gym';
   }
-
-  // Save signature
   document.getElementById('signatureData').value = canvas.toDataURL();
-
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Skickar...';
   btn.disabled = true;
-
   const successId = isOffer ? 'stepOffer' : 'stepSuccess';
-
   fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } })
-    .then(r => {
+    .then(() => {
       document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
       document.getElementById('progress').style.display = 'none';
       const el = document.getElementById(successId);
