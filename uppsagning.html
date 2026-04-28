@@ -84,10 +84,6 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 /* Step 4 — Confirm */
 .confirm-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-bottom:8px}
 .confirm-sub{font-size:14px;color:var(--white-soft);margin-bottom:32px;line-height:1.6}
-.signature-area{margin-bottom:24px}
-.signature-area label{display:block;font-size:13px;font-weight:500;margin-bottom:8px;color:var(--white-soft)}
-.signature-pad{width:100%;height:150px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:12px;cursor:crosshair;touch-action:none}
-.sig-clear{font-size:12px;color:var(--accent);cursor:pointer;background:none;border:none;margin-top:8px;text-decoration:underline}
 .consent{display:flex;align-items:flex-start;gap:12px;margin-bottom:28px;cursor:pointer}
 .consent input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);flex-shrink:0;margin-top:2px;cursor:pointer}
 .consent span{font-size:13px;color:var(--white-soft);line-height:1.5}
@@ -135,11 +131,10 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
     <input type="hidden" name="_subject" value="Uppsägning / Erbjudande — Stolt Gym">
     <input type="hidden" name="_cc" value="tilde@stoltgym.se">
     <input type="hidden" name="_replyto" id="replyTo">
-    <input type="hidden" name="choice" id="choiceField" value="Uppsägning">
-    <input type="hidden" name="service_rating" id="service_rating">
-    <input type="hidden" name="facility_rating" id="facility_rating">
-    <input type="hidden" name="reason" id="reason">
-    <input type="hidden" name="signature" id="signatureData">
+    <input type="hidden" name="Val" id="choiceField" value="Uppsägning">
+    <input type="hidden" name="Service-betyg" id="service_rating">
+    <input type="hidden" name="Utrustning-betyg" id="facility_rating">
+    <input type="hidden" name="Anledning" id="reason">
 
     <!-- ════════ STEP 1: PERSONAL INFO ════════ -->
     <div class="step active" id="step1">
@@ -148,25 +143,25 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 
       <div class="field">
         <label>Fullständigt namn *</label>
-        <input type="text" name="name" id="nameField" placeholder="Förnamn Efternamn" required>
+        <input type="text" name="Namn" id="nameField" placeholder="Förnamn Efternamn" required>
       </div>
       <div class="field-row">
         <div class="field">
           <label>E-post *</label>
-          <input type="email" name="email" id="emailField" placeholder="din@email.se" required>
+          <input type="email" name="E-post" id="emailField" placeholder="din@email.se" required>
         </div>
         <div class="field">
           <label>Mobilnummer *</label>
-          <input type="tel" name="phone" id="phoneField" placeholder="070-000 00 00" required>
+          <input type="tel" name="Telefon" id="phoneField" placeholder="070-000 00 00" required>
         </div>
       </div>
       <div class="field">
         <label>Personnummer *</label>
-        <input type="text" name="personnummer" id="pnrField" placeholder="ÅÅÅÅ-MM-DD" required>
+        <input type="text" name="Personnummer" id="pnrField" placeholder="ÅÅÅÅ-MM-DD" required>
       </div>
       <div class="field">
         <label>Meddelande</label>
-        <textarea name="message" placeholder="Valfritt meddelande..."></textarea>
+        <textarea name="Meddelande" placeholder="Valfritt meddelande..."></textarea>
       </div>
 
       <button type="button" class="btn-primary" onclick="validateStep1()">Fortsätt</button>
@@ -267,10 +262,9 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 
       <div class="summary" id="summaryBox"></div>
 
-      <div class="signature-area">
-        <label>Signera nedan *</label>
-        <canvas class="signature-pad" id="sigCanvas"></canvas>
-        <button type="button" class="sig-clear" onclick="clearSignature()">Rensa signatur</button>
+      <div class="field">
+        <label>Skriv ditt fullständiga namn för att bekräfta *</label>
+        <input type="text" id="sigName" name="Signatur" placeholder="Förnamn Efternamn" style="font-style:italic">
       </div>
 
       <label class="consent">
@@ -317,7 +311,7 @@ function goToStep(n) {
   document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
   const target = document.getElementById('step' + n);
   target.style.display = 'block';
-  setTimeout(() => { target.classList.add('active'); if (n === 4) initSignature(); }, 10);
+  setTimeout(() => target.classList.add('active'), 10);
   currentStep = n;
   updateProgress(n);
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -439,54 +433,19 @@ function buildSummary() {
   }
 }
 
-// Signature pad
-const canvas = document.getElementById('sigCanvas');
-const ctx = canvas.getContext('2d');
-let drawing = false;
-let sigInitialized = false;
-
-function initSignature() {
-  if (sigInitialized) return;
-  const rect = canvas.getBoundingClientRect();
-  if (rect.width === 0) return;
-  canvas.width = rect.width * 2;
-  canvas.height = rect.height * 2;
-  ctx.scale(2, 2);
-  ctx.strokeStyle = '#f5f5f5';
-  ctx.lineWidth = 2;
-  ctx.lineCap = 'round';
-  sigInitialized = true;
-}
-
-function getPos(e) {
-  const rect = canvas.getBoundingClientRect();
-  const touch = e.touches ? e.touches[0] : e;
-  return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
-}
-
-canvas.addEventListener('mousedown', e => { drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
-canvas.addEventListener('mousemove', e => { if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
-canvas.addEventListener('mouseup', () => drawing = false);
-canvas.addEventListener('mouseleave', () => drawing = false);
-canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
-canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
-canvas.addEventListener('touchend', () => drawing = false);
-
-function clearSignature() {
-  const rect = canvas.getBoundingClientRect();
-  ctx.clearRect(0, 0, rect.width, rect.height);
-}
-
 // Form submit
 function submitForm() {
   if (!document.getElementById('consentCheck').checked) {
     alert('Du behöver godkänna villkoren.');
     return;
   }
+  if (!document.getElementById('sigName').value.trim()) {
+    alert('Vänligen skriv ditt fullständiga namn för att bekräfta.');
+    return;
+  }
   if (isOffer) {
     document.querySelector('[name="_subject"]').value = 'ERBJUDANDE ACCEPTERAT — Stolt Gym';
   }
-  document.getElementById('signatureData').value = canvas.toDataURL();
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Skickar...';
   btn.disabled = true;
