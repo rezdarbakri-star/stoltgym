@@ -193,6 +193,23 @@
     }
     .mobile-menu a:hover { color: var(--accent); }
 
+    /* ===== CAMPAIGN ===== */
+    .campaign-banner{
+      background:linear-gradient(135deg,rgba(0,212,255,.08) 0%,rgba(34,197,94,.06) 100%);
+      border-top:1px solid rgba(0,212,255,.15);
+      border-bottom:1px solid rgba(0,212,255,.15);
+      padding:48px 24px;
+      text-align:center;
+    }
+    .campaign-inner{max-width:600px;margin:0 auto}
+    .campaign-tag{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+    .campaign-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;margin-bottom:12px}
+    .campaign-desc{font-size:15px;color:var(--white-soft);line-height:1.6;margin-bottom:16px}
+    .campaign-desc strong{color:var(--white)}
+    .campaign-details{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--white-soft);opacity:.6;margin-bottom:24px}
+    .campaign-btn{display:inline-block;background:var(--accent);color:var(--black);padding:14px 40px;font-size:14px;font-weight:600;border-radius:12px;text-decoration:none;transition:all .3s}
+    .campaign-btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+
     /* ===== HERO ===== */
     .hero {
       position: relative;
@@ -768,6 +785,9 @@
       color: var(--white);
       margin-bottom: 4px;
     }
+    .price-was{font-size:15px;color:var(--white-soft);text-decoration:line-through;opacity:.5}
+    .price-now{font-family:var(--font-display);font-size:48px;line-height:1;color:var(--accent);margin-bottom:4px}
+    .price-summer-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--black);background:#22c55e;padding:3px 10px;border-radius:99px;margin-bottom:8px}
     .price-unit {
       font-size: 13px;
       color: var(--white-soft);
@@ -1101,6 +1121,7 @@
       height: 32px;
       background: linear-gradient(to bottom, var(--white), transparent);
     }
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
     @keyframes bounce {
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50% { transform: translateX(-50%) translateY(8px); }
@@ -1187,12 +1208,29 @@
       <div class="hero-tag">Skogås &bull; Trångsund</div>
       <h1>TRÄNA<br><span class="hero-logo-crop"><img src="STOLTGYM_LOGGA_CROPPED.png" alt="STOLT"></span></h1>
       <p class="hero-sub">Ett familjärt gym där gemenskap, träningsglädje och utveckling står i fokus. Här är alla välkomna.</p>
+      <div style="margin:20px 0 24px"><span style="display:inline-block;background:#22c55e;color:#0a0a0a;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:8px 20px;border-radius:99px;animation:pulse 2s ease-in-out infinite">☀️ Träna gratis hela sommaren</span></div>
       <div class="hero-btns">
         <a href="#medlemskap" class="btn-primary">Bli Medlem</a>
-        <a href="#testa" class="btn-outline">Prova Gratis</a>
       </div>
     </div>
   </section>
+
+  <!-- ===== SOMMARKAMPANJ ===== -->
+  <div class="campaign-banner">
+    <div class="campaign-inner">
+      <div class="campaign-tag">☀️ Sommarkampanj</div>
+      <h2 class="campaign-title">TRÄNA GRATIS<br>HELA SOMMAREN.</h2>
+      <p class="campaign-desc">Signa upp nu — träna fritt <strong>juni, juli och augusti</strong>. Första dragningen sker 25 augusti.</p>
+      <div class="campaign-details">
+        <span>Startavgift 295:-</span>
+        <span>·</span>
+        <span>Autogiro 12 mån</span>
+        <span>·</span>
+        <span>Nya medlemmar</span>
+      </div>
+      <a href="#medlemskap" class="campaign-btn">Bli Medlem</a>
+    </div>
+  </div>
 
   <!-- ===== QUICK LINKS ===== -->
   <div class="quick-bar">
@@ -1283,55 +1321,69 @@
 
     <div class="pricing-grid pricing-group pricing-grid-4 active" id="pricing-top-both">
       <div class="price-card featured reveal">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Vuxen</div>
         <div class="price-scope">Skogås + Trångsund</div>
-        <div class="price-amount">479:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">479:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 479:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=2&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Student 19+</div>
         <div class="price-scope">Skogås + Trångsund</div>
-        <div class="price-amount">419:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">419:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 419:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=7&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Ungdom 15–19</div>
         <div class="price-scope">Skogås + Trångsund</div>
-        <div class="price-amount">399:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">399:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 399:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=71&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Senior</div>
         <div class="price-scope">Skogås + Trångsund</div>
-        <div class="price-amount">369:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">369:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 369:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=10&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
     </div>
 
     <div class="pricing-grid pricing-group" id="pricing-top-trangsund">
       <div class="price-card featured reveal visible">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Vuxen</div>
         <div class="price-scope">Endast Trångsund</div>
-        <div class="price-amount">399:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">399:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 399:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=44&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal visible">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Student</div>
         <div class="price-scope">Endast Trångsund</div>
-        <div class="price-amount">349:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">349:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 349:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=45&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal visible">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Senior</div>
         <div class="price-scope">Endast Trångsund</div>
-        <div class="price-amount">299:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">299:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 299:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=43&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
     </div>
@@ -1429,31 +1481,39 @@
     <!-- Skogås + Trångsund -->
     <div class="pricing-grid pricing-group pricing-grid-4 active" id="pricing-bottom-both">
       <div class="price-card featured reveal">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Vuxen</div>
         <div class="price-scope">Skogås + Trångsund</div>
-        <div class="price-amount">479:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">479:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 479:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=2&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Student 19+</div>
         <div class="price-scope">Skogås + Trångsund</div>
-        <div class="price-amount">419:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">419:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 419:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=7&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Ungdom 15–19</div>
         <div class="price-scope">Skogås + Trångsund</div>
-        <div class="price-amount">399:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">399:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 399:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=71&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Senior</div>
         <div class="price-scope">Skogås + Trångsund</div>
-        <div class="price-amount">369:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">369:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 369:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=10&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
     </div>
@@ -1461,24 +1521,30 @@
     <!-- Endast Trångsund -->
     <div class="pricing-grid pricing-group" id="pricing-bottom-trangsund">
       <div class="price-card featured reveal visible">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Vuxen</div>
         <div class="price-scope">Endast Trångsund</div>
-        <div class="price-amount">399:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">399:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 399:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=44&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal visible">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Student</div>
         <div class="price-scope">Endast Trångsund</div>
-        <div class="price-amount">349:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">349:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 349:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=45&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
       <div class="price-card reveal visible">
+        <div class="price-summer-tag">☀️ Sommar</div>
         <div class="price-label">Autogiro Senior</div>
         <div class="price-scope">Endast Trångsund</div>
-        <div class="price-amount">299:-</div>
-        <div class="price-unit">per månad</div>
+        <div class="price-was">299:-/mån</div>
+        <div class="price-now">0:-</div>
+        <div class="price-unit">jun–aug · sen 299:-/mån</div>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&action=membership&membershipid=43&valdanlaggning=&linkcart=y&unique=yes" class="btn-primary">Börja Träna</a>
       </div>
     </div>
