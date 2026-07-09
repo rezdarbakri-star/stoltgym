@@ -1770,7 +1770,7 @@
         <p>Mail: <a href="mailto:info@stoltgym.se">info@stoltgym.se</a></p>
       </div>
     </div>
-    <div class="footer-bottom">Stolt Gym &copy; 2025. Alla rättigheter förbehållna. · Built by <a href="https://rezdar.com" target="_blank" rel="noopener" style="color:rgba(245,245,245,.35);text-decoration:none;border-bottom:1px solid rgba(245,245,245,.1)">Rezdar Digital</a></div>
+    <div class="footer-bottom">Stolt Gym &copy; 2026. Alla rättigheter förbehållna. · <a href="integritetspolicy.html" style="color:rgba(245,245,245,.35);text-decoration:none;border-bottom:1px solid rgba(245,245,245,.1)">Integritetspolicy</a> · <a href="cookiepolicy.html" style="color:rgba(245,245,245,.35);text-decoration:none;border-bottom:1px solid rgba(245,245,245,.1)">Cookies</a> · Built by <a href="https://rezdar.com" target="_blank" rel="noopener" style="color:rgba(245,245,245,.35);text-decoration:none;border-bottom:1px solid rgba(245,245,245,.1)">Rezdar Digital</a></div>
   </footer>
 
   <script>
@@ -1859,6 +1859,15 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
   </script>
+
+<!-- ===== COOKIE BANNER ===== -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);border-top:1px solid #222;padding:16px 24px;font-size:13px;color:#b0b0b0">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <p style="margin:0;line-height:1.6;flex:1;min-width:240px">Vi använder cookies och externa resurser för att webbplatsen ska fungera. Läs vår <a href="cookiepolicy.html" style="color:#00d4ff;text-decoration:underline">cookiepolicy</a> och <a href="integritetspolicy.html" style="color:#00d4ff;text-decoration:underline">integritetspolicy</a>.</p>
+    <button onclick="document.getElementById('cookieBanner').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#00d4ff;color:#0a0a0a;border:none;padding:10px 24px;font-size:13px;font-weight:600;border-radius:8px;cursor:pointer;white-space:nowrap">Jag förstår</button>
+  </div>
+</div>
+<script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBanner').style.display='block';</script>
 
 </body>
 </html>
