@@ -642,6 +642,90 @@
       transform: scale(1.04);
       box-shadow: 0 0 30px var(--accent-glow);
     }
+    .btn-book { border: none; cursor: pointer; font-family: inherit; }
+
+    /* ===== PT BOOKING MODAL ===== */
+    .bk-overlay {
+      position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: none; align-items: flex-start; justify-content: center;
+      padding: 24px; overflow-y: auto;
+    }
+    .bk-overlay.open { display: flex; }
+    .bk-modal {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      max-width: 440px; width: 100%;
+      position: relative;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      animation: bkIn .3s cubic-bezier(.25,.46,.45,.94);
+    }
+    @keyframes bkIn { from { opacity:0; transform: translateY(16px) scale(.98); } to { opacity:1; transform:none; } }
+    .bk-close {
+      position: absolute; top: 16px; right: 16px;
+      background: none; border: none; cursor: pointer;
+      width: 32px; height: 32px; border-radius: 50%;
+      color: var(--white-soft); display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+    }
+    .bk-close:hover { background: rgba(255,255,255,.06); color: var(--white); }
+    .bk-close svg { width: 18px; height: 18px; }
+    .bk-tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .bk-title { font-family: var(--font-display); font-size: 1.8rem; line-height: 1.1; margin-bottom: 6px; }
+    .bk-sub { font-size: 13px; color: var(--white-soft); line-height: 1.6; margin-bottom: 24px; }
+    .bk-field { margin-bottom: 14px; }
+    .bk-field label { display: block; font-size: 12px; font-weight: 500; color: var(--white-soft); margin-bottom: 6px; }
+    .bk-field input, .bk-field textarea {
+      width: 100%; padding: 12px 14px;
+      background: var(--dark); border: 1px solid var(--dark-border);
+      border-radius: 10px; color: var(--white);
+      font-size: 14px; font-family: inherit; outline: none;
+      transition: border-color .3s;
+    }
+    .bk-field input:focus, .bk-field textarea:focus { border-color: var(--accent); }
+    .bk-field input::placeholder, .bk-field textarea::placeholder { color: rgba(176,176,176,.45); }
+    .bk-field textarea { resize: vertical; min-height: 70px; }
+    .bk-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .bk-group { margin-bottom: 18px; }
+    .bk-glabel { display: block; font-size: 12px; font-weight: 500; color: var(--white-soft); margin-bottom: 8px; }
+    .bk-opt {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; margin-bottom: 6px;
+      background: var(--dark); border: 1px solid var(--dark-border);
+      border-radius: 10px; cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .bk-opt:hover { border-color: rgba(0,212,255,.4); }
+    .bk-opt input[type=radio] { accent-color: var(--accent); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; margin: 0; }
+    .bk-opt span { font-size: 13px; color: var(--white); line-height: 1.4; }
+    .bk-opt:has(input:checked) { border-color: var(--accent); background: rgba(0,212,255,.07); }
+    .bk-submit {
+      width: 100%; margin-top: 10px;
+      background: var(--accent); color: var(--black);
+      border: none; padding: 14px; border-radius: 10px;
+      font-size: 14px; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: filter .3s;
+    }
+    .bk-submit:hover { filter: brightness(1.15); }
+    .bk-submit:disabled { opacity: .6; cursor: default; }
+    .bk-alt { text-align: center; font-size: 12px; color: var(--white-soft); opacity: .65; margin-top: 14px; }
+    .bk-alt a { color: var(--accent); text-decoration: underline; }
+    .bk-success { text-align: center; padding: 20px 0; }
+    .bk-success-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(0,212,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .bk-success-icon svg { width: 28px; height: 28px; stroke: var(--accent); }
+    .bk-success h3 { font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 10px; }
+    .bk-success p { font-size: 13px; color: var(--white-soft); line-height: 1.7; }
+    @media (max-width: 480px) { .bk-row { grid-template-columns: 1fr; } .bk-modal { padding: 28px 20px; } }
 
     /* ===== SWITCH GYM CTA ===== */
     .switch-section {
@@ -1451,10 +1535,10 @@
         <div class="pt-info">
           <h3>Alexander Annelin</h3>
           <p>Alexander är en energisk och motiverande personlig tränare som brinner för att hjälpa sina klienter att nå sina mål. Med sin positiva attityd och inspirerande coachingstil skapar han en träningsmiljö där du alltid känner dig peppad att göra ditt bästa!</p>
-          <a href="https://api.leadconnectorhq.com/widget/form/qWjjxacQBO4vtM6HTZjY" class="btn-book">
+          <button type="button" class="btn-book" onclick="openBooking('alexander')">
             Boka Alexander
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -1465,10 +1549,10 @@
         <div class="pt-info">
           <h3>Jonnie Danielsson</h3>
           <p>40 år ung med ett helt liv i rörelse och idrottande, 25 års styrketräning, 15 år som personlig tränare och kostrådgivare, gruppträningsinstruktör, massör, fystränare och friskvårdscoach. Individanpassat eller i grupp, som förening eller företag, är Jonnie rätt man!</p>
-          <a href="https://api.leadconnectorhq.com/widget/form/Pc8tOEVMZaopB5PxEWVF" class="btn-book">
+          <button type="button" class="btn-book" onclick="openBooking('jonnie')">
             Boka Jonnie
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -1871,6 +1955,71 @@
       }
     }
 
+    // ===== PT BOOKING MODAL =====
+    var PT = {
+      alexander: { name: 'Alexander Annelin', alias: '4d6a50c91027e74db9e9e3c55d2124e3', mail: 'alexander@stoltgym.se' },
+      jonnie:    { name: 'Jonnie Danielsson', alias: '2716c2cf281b6cdfd37f3519686e5443', mail: 'jonnie@stoltgym.se' }
+    };
+    var bkCurrent = null;
+
+    function openBooking(who) {
+      bkCurrent = who;
+      var t = PT[who];
+      document.getElementById('bkTitle').textContent = 'Boka ' + t.name.split(' ')[0];
+      document.getElementById('bkSub').textContent = 'Fyll i dina uppgifter så hör ' + t.name.split(' ')[0] + ' av sig till dig.';
+      document.getElementById('bkAltMail').href = 'mailto:' + t.mail + '?subject=PT-bokning';
+      document.getElementById('bkAltMail').textContent = t.mail;
+      document.getElementById('bkForm').style.display = '';
+      document.getElementById('bkAlt').style.display = '';
+      document.getElementById('bkSuccess').style.display = 'none';
+      document.getElementById('bkForm').reset();
+      var btn = document.getElementById('bkSubmit');
+      btn.disabled = false; btn.textContent = 'Skicka förfrågan';
+      document.getElementById('bkOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBooking() {
+      document.getElementById('bkOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeBooking();
+    });
+
+    function bkOverlayClick(e) {
+      if (e.target.id === 'bkOverlay') closeBooking();
+    }
+
+    function submitBooking(e) {
+      e.preventDefault();
+      var t = PT[bkCurrent];
+      var btn = document.getElementById('bkSubmit');
+      btn.disabled = true;
+      btn.textContent = 'Skickar...';
+
+      var fd = new FormData(document.getElementById('bkForm'));
+      fd.append('Tränare', t.name);
+      fd.append('_subject', 'PT-förfrågan — ' + t.name);
+      fd.append('_captcha', 'false');
+      fd.append('_template', 'table');
+
+      fetch('https://formsubmit.co/ajax/' + t.alias, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: fd
+      })
+      .then(function(){ bkDone(); })
+      .catch(function(){ bkDone(); });
+    }
+
+    function bkDone() {
+      document.getElementById('bkForm').style.display = 'none';
+      document.getElementById('bkAlt').style.display = 'none';
+      document.getElementById('bkSuccess').style.display = 'block';
+    }
+
     // ===== FAQ =====
     function toggleFaq(btn) {
       const item = btn.parentElement;
@@ -1904,6 +2053,75 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
   </script>
+
+<!-- ===== PT BOOKING MODAL ===== -->
+<div class="bk-overlay" id="bkOverlay" onclick="bkOverlayClick(event)">
+  <div class="bk-modal">
+    <button type="button" class="bk-close" onclick="closeBooking()" aria-label="Stäng">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <div class="bk-tag">Personlig träning</div>
+    <h2 class="bk-title" id="bkTitle">Boka</h2>
+    <p class="bk-sub" id="bkSub">Fyll i dina uppgifter så hör vi av oss.</p>
+
+    <form id="bkForm" onsubmit="submitBooking(event)">
+      <div class="bk-field">
+        <label>Fullständigt namn *</label>
+        <input type="text" name="Namn" placeholder="Förnamn Efternamn" required>
+      </div>
+      <div class="bk-row">
+        <div class="bk-field">
+          <label>E-post *</label>
+          <input type="email" name="E-post" placeholder="din@email.se" required>
+        </div>
+        <div class="bk-field">
+          <label>Mobilnummer *</label>
+          <input type="tel" name="Mobilnummer" placeholder="070-000 00 00" required>
+        </div>
+      </div>
+
+      <div class="bk-group">
+        <span class="bk-glabel">Vad gäller din förfrågan? *</span>
+        <label class="bk-opt"><input type="radio" name="Förfrågan" value="Har redan köpt PT och vill boka tid" required><span>Jag har redan köpt PT och vill boka en tid</span></label>
+        <label class="bk-opt"><input type="radio" name="Förfrågan" value="Vill köpa PT och boka tid"><span>Jag vill köpa PT och boka en tid</span></label>
+      </div>
+
+      <div class="bk-group">
+        <span class="bk-glabel">Vad vill du främst ha hjälp med? *</span>
+        <label class="bk-opt"><input type="radio" name="Mål" value="Komma igång med träningen" required><span>Komma igång med träningen</span></label>
+        <label class="bk-opt"><input type="radio" name="Mål" value="Styrka &amp; muskeluppbyggnad"><span>Styrka &amp; muskeluppbyggnad</span></label>
+        <label class="bk-opt"><input type="radio" name="Mål" value="Viktminskning"><span>Viktminskning</span></label>
+        <label class="bk-opt"><input type="radio" name="Mål" value="Teknik &amp; träningsupplägg"><span>Teknik &amp; träningsupplägg</span></label>
+        <label class="bk-opt"><input type="radio" name="Mål" value="Annat"><span>Annat</span></label>
+      </div>
+
+      <div class="bk-group">
+        <span class="bk-glabel">Hur ser din träningsbakgrund ut? *</span>
+        <label class="bk-opt"><input type="radio" name="Träningsbakgrund" value="Tränar regelbundet" required><span>Tränar regelbundet</span></label>
+        <label class="bk-opt"><input type="radio" name="Träningsbakgrund" value="Har tränat tidigare"><span>Har tränat tidigare</span></label>
+        <label class="bk-opt"><input type="radio" name="Träningsbakgrund" value="Nybörjare"><span>Nybörjare</span></label>
+      </div>
+
+      <div class="bk-field">
+        <label>När passar det dig bäst för PT?</label>
+        <textarea name="Önskad tid" placeholder="Skriv gärna dagar och ungefärliga tider som passar dig."></textarea>
+      </div>
+
+      <button type="submit" class="bk-submit" id="bkSubmit">Skicka förfrågan</button>
+    </form>
+
+    <p class="bk-alt" id="bkAlt">Eller mejla direkt: <a id="bkAltMail" href="#">…</a></p>
+
+    <div class="bk-success" id="bkSuccess" style="display:none">
+      <div class="bk-success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3>Förfrågan skickad!</h3>
+      <p>Tack! Din förfrågan är på väg. Du hör av oss inom kort för att boka in en tid.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ===== COOKIE BANNER ===== -->
 <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);border-top:1px solid #222;padding:16px 24px;font-size:13px;color:#b0b0b0">
