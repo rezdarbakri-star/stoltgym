@@ -63,13 +63,12 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 /* Hero */
 .hero{padding:160px 24px 80px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,var(--accent-dim),transparent 70%);pointer-events:none}
-.hero-wordmark{display:flex;flex-direction:column;align-items:center;gap:2px;margin-bottom:18px}
-.hero-logo-crop{display:block;height:clamp(40px,9.5vw,88px);overflow:hidden;line-height:0}
+.hero-wordmark{display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2.4vw,24px);margin-bottom:24px}
+.hero-logo-crop{display:block;height:clamp(24px,4.4vw,42px);overflow:hidden;line-height:0;opacity:.85}
 .hero-logo-crop img{height:100%;width:auto;max-width:none;filter:invert(1);display:block}
-.hero-place{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,9vw,5.4rem);line-height:.9;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
-.hero-badge{display:inline-block;background:var(--accent);color:var(--black);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:99px}
-.hero-tagline{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.3rem,3.6vw,2rem);letter-spacing:1px;color:var(--accent);margin:22px 0 10px}
-.hero p{font-size:16px;color:var(--white-soft);max-width:560px;margin:0 auto;line-height:1.7}
+.hero-place{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,11vw,7rem);line-height:.88;letter-spacing:3px;text-transform:uppercase;color:var(--white)}
+.hero-badge{display:inline-block;background:transparent;border:1px solid rgba(0,212,255,.45);color:var(--accent);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:99px}
+.hero p{font-size:16px;color:var(--white-soft);max-width:520px;margin:26px auto 0;line-height:1.7}
 
 /* Image grid */
 .img-grid{max-width:1100px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -188,8 +187,7 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
     <span class="hero-place">Trångsund</span>
   </h1>
   <span class="hero-badge">Obemannat gym</span>
-  <p class="hero-tagline">Träna smidigt — med helt ny utrustning.</p>
-  <p>Stolt Gym i Trångsund är det perfekta valet för dig som vill ha en enkel och effektiv träningsupplevelse.</p>
+  <p>Träna smidigt, med helt ny utrustning. Stolt Gym i Trångsund är det perfekta valet för dig som vill ha en enkel och effektiv träningsupplevelse.</p>
 </section>
 
 <div class="img-grid">
