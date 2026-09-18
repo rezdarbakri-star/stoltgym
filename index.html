@@ -443,7 +443,10 @@
 
     /* ===== SECTIONS ===== */
     section { padding: 80px 24px; }
-    @media (min-width: 769px) { section { padding: 120px 48px; } }
+    @media (min-width: 769px) {
+      section { padding: 120px max(48px, calc((100% - 1200px) / 2)); }
+      .hero { padding: 120px 48px; }
+    }
 
     .section-tag {
       display: inline-block;
@@ -598,7 +601,7 @@
       grid-template-columns: 1fr;
       gap: 24px;
       margin-top: 48px;
-      max-width: 1100px;
+      max-width: 1200px;
     }
     @media (min-width: 620px) {
       .pt-grid { grid-template-columns: repeat(2, 1fr); }
@@ -776,6 +779,8 @@
     }
     .switch-inner {
       max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
       position: relative;
       z-index: 1;
     }
@@ -1034,15 +1039,26 @@
     .hours-group { display: none; }
     .hours-group.active { display: block; }
     .hours-grid {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
       text-align: left;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .hours-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
       .hours-grid { grid-template-columns: 1fr; }
+    }
+    .hours-grid-single {
+      grid-template-columns: minmax(0, 360px);
+      justify-content: center;
+    }
+    @media (max-width: 900px) {
+      .hours-grid-single { grid-template-columns: minmax(0, 360px); }
     }
     .hours-card {
       background: var(--dark-card);
@@ -1821,19 +1837,12 @@
           <div class="hours-row"><span class="hours-day">31/12 Nyårsafton</span><span class="hours-time">13:00–17:00</span></div>
           <div class="hours-row"><span class="hours-day">1/1 Nyårsdagen</span><span class="hours-time">Obemannat</span></div>
         </div>
-        <div class="hours-card">
-          <h3 class="hours-card-title">Sommartider bemannat<span class="hours-date-range">27/6–16/8</span></h3>
-          <div class="hours-row"><span class="hours-day">Måndag–torsdag</span><span class="hours-time">10:00–13:00 &amp; 16:30–20:30</span></div>
-          <div class="hours-row"><span class="hours-day">Fredag</span><span class="hours-time">10:00–13:00 &amp; 16:30–20:00</span></div>
-          <div class="hours-row"><span class="hours-day">Lördag</span><span class="hours-time">12:00–16:00</span></div>
-          <div class="hours-row"><span class="hours-day">Söndag</span><span class="hours-time">12:00–17:00</span></div>
-        </div>
       </div>
     </div>
 
     <!-- Trångsund -->
     <div class="hours-group" id="hours-trangsund">
-      <div class="hours-grid reveal">
+      <div class="hours-grid hours-grid-single reveal">
         <div class="hours-card">
           <h3 class="hours-card-title">Öppettider<span class="hours-badge">Obemannat gym</span></h3>
           <div class="hours-row"><span class="hours-day">Måndag–fredag</span><span class="hours-time">06:00–22:00</span></div>
