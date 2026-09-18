@@ -344,6 +344,31 @@
       margin-bottom: 32px;
       animation: fadeUp 0.8s ease both 0.6s;
     }
+    .hero-promo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 18px 0 26px;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white-soft);
+      animation: fadeUp 0.8s ease both 0.7s;
+    }
+    .hero-promo-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 0 rgba(0,212,255,.5);
+      animation: promoPing 2.4s ease-out infinite;
+    }
+    @keyframes promoPing {
+      0%   { box-shadow: 0 0 0 0 rgba(0,212,255,.45); }
+      70%  { box-shadow: 0 0 0 8px rgba(0,212,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,212,255,0); }
+    }
+
     .hero-btns {
       display: flex;
       gap: 12px;
@@ -648,21 +673,8 @@
     .btn-book { border: none; cursor: pointer; font-family: inherit; }
 
     /* ===== PT BUY ===== */
-    .pt-buy {
-      max-width: 1100px;
-      margin: 40px auto 0;
-      padding: 28px 24px;
-      background: var(--dark-card);
-      border: 1px solid var(--dark-border);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .pt-buy-text { font-size: 15px; color: var(--white); margin: 0; }
     .pt-buy-btn {
+      margin-top: 24px;
       display: inline-flex; align-items: center; gap: 8px;
       padding: 12px 28px;
       background: var(--accent); color: var(--black);
@@ -1351,9 +1363,10 @@
       <div class="hero-tag">Skogås &bull; Trångsund</div>
       <h1>TRÄNA<br><span class="hero-logo-crop"><img src="STOLTGYM_LOGGA_CROPPED.png" alt="STOLT"></span></h1>
       <p class="hero-sub">Ett familjärt gym där gemenskap, träningsglädje och utveckling står i fokus. Här är alla välkomna.</p>
-      <div style="margin:20px 0 24px"><span style="display:inline-block;background:#ff9500;color:#0a0a0a;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:8px 20px;border-radius:99px;animation:pulse 2s ease-in-out infinite">🎁 Välj din bonus som ny medlem</span></div>
+      <p class="hero-promo"><span class="hero-promo-dot"></span>Välj din bonus som ny medlem</p>
       <div class="hero-btns">
         <a href="#medlemskap" class="btn-primary">Bli Medlem</a>
+        <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="btn-outline">Köp PT-timmar</a>
       </div>
     </div>
   </section>
@@ -1556,6 +1569,11 @@
     <h2 class="section-title reveal">DIN TRÄNING.<br>DINA VILLKOR.</h2>
     <p class="section-desc reveal">Våra personliga tränare hjälper dig att nå dina mål med skräddarsydda program och motiverande coachning.</p>
 
+    <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="pt-buy-btn reveal">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Köp PT-timmar
+    </a>
+
     <div class="pt-grid">
       <div class="pt-card reveal">
         <div class="pt-photo">
@@ -1600,13 +1618,6 @@
       </div>
     </div>
 
-    <div class="pt-buy reveal">
-      <p class="pt-buy-text">Vill du köpa PT-timmar direkt?</p>
-      <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="pt-buy-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        Köp PT-timmar
-      </a>
-    </div>
   </section>
 
   <!-- ===== SWITCH GYM ===== -->
