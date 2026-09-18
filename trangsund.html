@@ -17,18 +17,58 @@
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif}
 
 /* Nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--dark-border)}
-.nav-logo img{height:28px;filter:invert(1);opacity:.8}
-.nav-back{color:var(--white-soft);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;transition:color .3s}
-.nav-back:hover{color:var(--accent)}
-.nav-back svg{width:16px;height:16px}
+
+:root{--accent-glow:rgba(0,212,255,.35);--font-display:'Bebas Neue',sans-serif}
+.nav{position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; background: rgba(10, 10, 10, 0.5); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.4s, backdrop-filter 0.4s;}
+.nav.scrolled{background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06);}
+.nav-logo{height: 36px; width: auto; filter: invert(1);}
+.nav-logo-placeholder{height: 36px; padding: 4px 12px; background: var(--white); color: var(--black); font-family: var(--font-display); font-size: 22px; letter-spacing: 2px; display: flex; align-items: center; border-radius: 4px;}
+.nav-links{display: none; gap: 32px; list-style: none;}
+.nav-links a{font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); transition: color 0.3s;}
+.nav-links a:hover{color: var(--accent);}
+.nav-dropdown{position: relative;}
+.nav-submenu{position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(20px); border: 1px solid var(--dark-border); border-radius: 12px; padding: 8px 0; min-width: 160px; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s, transform 0.3s; transform: translateX(-50%) translateY(16px);}
+.nav-dropdown:hover .nav-submenu{opacity: 1; visibility: visible; transform: translateX(-50%) translateY(8px);}
+.nav-submenu a{display: block; padding: 10px 20px; font-size: 13px; color: var(--white-soft); text-decoration: none; transition: color 0.2s, background 0.2s; white-space: nowrap;}
+.nav-submenu a:hover{color: var(--accent); background: rgba(255,255,255,0.04);}
+.nav-cta{padding: 10px 24px; background: var(--accent); color: var(--black); font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; border-radius: 100px; transition: transform 0.2s, box-shadow 0.3s;}
+.nav-cta:hover{transform: scale(1.04); box-shadow: 0 0 30px var(--accent-glow);}
+.hamburger{display: flex; flex-direction: column; gap: 5px; background: none; padding: 8px;}
+.hamburger span{display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; border-radius: 2px;}
+.hamburger.open span:nth-child(1){transform: rotate(45deg) translate(5px, 5px);}
+.hamburger.open span:nth-child(2){opacity: 0;}
+.hamburger.open span:nth-child(3){transform: rotate(-45deg) translate(5px, -5px);}
+.mobile-menu{position: fixed; inset: 0; z-index: 999; background: rgba(10, 10, 10, 0.97); backdrop-filter: blur(30px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 24px; opacity: 0; pointer-events: none; transition: opacity 0.4s;}
+.mobile-menu.open{opacity: 1; pointer-events: all;}
+.mobile-menu a{font-family: var(--font-display); font-size: 40px; letter-spacing: 3px; color: var(--white); transition: color 0.3s;}
+.mobile-menu a:hover{color: var(--accent);}
+footer{background: var(--dark); border-top: 1px solid var(--dark-border); padding: 48px 24px;}
+.footer-inner{max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px;}
+.footer-inner{grid-template-columns: 1fr 1fr 1fr;}
+.footer-brand h4{font-family: var(--font-display); font-size: 28px; letter-spacing: 2px; margin-bottom: 12px;}
+.footer-brand p{font-size: 14px; color: var(--white-soft); line-height: 1.6;}
+.footer-col h5{font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;}
+.footer-col a, .footer-col p{display: block; font-size: 14px; color: var(--white-soft); line-height: 2; transition: color 0.3s;}
+.footer-col a:hover{color: var(--accent);}
+.footer-socials{display: flex; gap: 16px; margin-top: 16px;}
+.footer-socials a{width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--dark-border); display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, background 0.3s;}
+.footer-socials a:hover{border-color: var(--accent); background: var(--accent-dim);}
+.footer-socials svg{width: 18px; height: 18px; fill: var(--white);}
+.footer-bottom{max-width: 1200px; margin: 32px auto 0; padding-top: 24px; border-top: 1px solid var(--dark-border); font-size: 12px; color: var(--white-soft); opacity: 0.5;}
+.nav-links{display: flex;}
+.hamburger{display: none;}
+@media (min-width: 769px){.footer-inner { grid-template-columns: 1fr 1fr 1fr; }}
+@media (min-width: 900px){.nav-links { display: flex; } .hamburger { display: none; }}
 
 /* Hero */
 .hero{padding:160px 24px 80px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,var(--accent-dim),transparent 70%);pointer-events:none}
-.hero-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
-.hero-badge{display:inline-block;background:var(--accent);color:var(--black);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:99px;margin-left:8px;vertical-align:middle}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,8vw,5rem);line-height:1.05;margin-bottom:16px}
+.hero-wordmark{display:flex;flex-direction:column;align-items:center;gap:2px;margin-bottom:18px}
+.hero-logo-crop{display:block;height:clamp(40px,9.5vw,88px);overflow:hidden;line-height:0}
+.hero-logo-crop img{height:100%;width:auto;max-width:none;filter:invert(1);display:block}
+.hero-place{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,9vw,5.4rem);line-height:.9;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.hero-badge{display:inline-block;background:var(--accent);color:var(--black);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:99px}
+.hero-tagline{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.3rem,3.6vw,2rem);letter-spacing:1px;color:var(--accent);margin:22px 0 10px}
 .hero p{font-size:16px;color:var(--white-soft);max-width:560px;margin:0 auto;line-height:1.7}
 
 /* Image grid */
@@ -77,12 +117,14 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .cta{text-align:center;padding:60px 24px 80px;border-top:1px solid var(--dark-border)}
 .cta h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-bottom:12px}
 .cta p{font-size:14px;color:var(--white-soft);margin-bottom:28px}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cta-btn-alt{display:inline-block;padding:14px 40px;background:transparent;border:1.5px solid rgba(245,245,245,.3);color:var(--white);font-size:14px;font-weight:600;border-radius:12px;text-decoration:none;transition:border-color .3s,background .3s}
+.cta-btn-alt:hover{border-color:var(--white);background:rgba(255,255,255,.05)}
 .cta-btn{display:inline-block;background:var(--accent);color:var(--black);padding:14px 40px;font-size:14px;font-weight:600;border-radius:12px;text-decoration:none;transition:all .3s}
 .cta-btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
 
 /* Footer */
-.footer{text-align:center;padding:32px 24px;font-size:11px;color:rgba(176,176,176,.4)}
-.footer a{color:rgba(176,176,176,.5);text-decoration:none;border-bottom:1px solid rgba(176,176,176,.15)}
+
 
 @media(max-width:768px){
   .img-grid{grid-template-columns:repeat(3,1fr);gap:8px}
@@ -96,17 +138,57 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 </head>
 <body>
 
-<nav class="nav">
-  <a href="/" class="nav-logo"><img src="https://rezdar.com/stoltgym/images/stoltgym.png" alt="Stolt Gym"></a>
-  <a href="/" class="nav-back">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Tillbaka
-  </a>
+<nav class="nav" id="nav">
+  <a href="/"><img src="https://rezdar.com/stoltgym/images/stoltgym.png" alt="Stolt Gym" class="nav-logo"></a>
+
+  <ul class="nav-links">
+    <li class="nav-dropdown"><a href="/#gymmet">Gymmen</a>
+      <div class="nav-submenu">
+        <a href="coming-soon.html">Skogås</a>
+        <a href="trangsund.html">Trångsund</a>
+      </div>
+    </li>
+    <li><a href="/#pt">Personlig Träning</a></li>
+    <li><a href="/#medlemskap">Medlemskap</a></li>
+    <li><a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">Gruppträning</a></li>
+    <li><a href="coming-soon.html">Shop</a></li>
+    <li class="nav-dropdown">
+      <a href="/#kontakt">Kontakt</a>
+      <div class="nav-submenu">
+        <a href="/#tider">Öppettider</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#kontakt">Kontakta oss</a>
+      </div>
+    </li>
+  </ul>
+
+  <a href="/#medlemskap" class="nav-cta">Bli Medlem</a>
+
+  <button class="hamburger" id="hamburger" aria-label="Meny">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#gymmet" onclick="closeMenu()">Gymmen</a>
+  <a href="coming-soon.html" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">Skogås</a>
+  <a href="trangsund.html" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">Trångsund</a>
+  <a href="/#pt" onclick="closeMenu()">PT</a>
+  <a href="/#medlemskap" onclick="closeMenu()">Medlemskap</a>
+  <a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">Gruppträning</a>
+  <a href="coming-soon.html">Shop</a>
+  <a href="/#kontakt" onclick="closeMenu()">Kontakt</a>
+  <a href="/#tider" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">Öppettider</a>
+  <a href="/#faq" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">FAQ</a>
+</div>
+
 <section class="hero">
-  <span class="hero-tag">Trångsund <span class="hero-badge">Obemannat</span></span>
-  <h1>Träna smidigt — med<br>helt ny utrustning.</h1>
+  <h1 class="hero-wordmark">
+    <span class="hero-logo-crop"><img src="STOLTGYM_LOGGA_CROPPED.png" alt="STOLT"></span>
+    <span class="hero-place">Trångsund</span>
+  </h1>
+  <span class="hero-badge">Obemannat gym</span>
+  <p class="hero-tagline">Träna smidigt — med helt ny utrustning.</p>
   <p>Stolt Gym i Trångsund är det perfekta valet för dig som vill ha en enkel och effektiv träningsupplevelse.</p>
 </section>
 
@@ -117,7 +199,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 </div>
 
 <div class="content">
-  <h2>Kompakt men komplett.</h2>
+  <h2>Kompakt och komplett.</h2>
   <p>Ett mindre men komplett gym, utrustat med sprillans nya maskiner från Gynleco — noggrant utvalt för att ge dig allt du behöver för ett riktigt bra pass.</p>
 
   <p>Anläggningen är obemannad — perfekt för dig som vill träna ostört i en lugn och modern miljö.</p>
@@ -129,7 +211,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
     </div>
     <div class="feature-item">
       <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Kompakt men komplett gym
+      Kompakt och komplett gym
     </div>
     <div class="feature-item">
       <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
@@ -160,13 +242,50 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 
 <section class="cta">
   <h3>Redo att komma igång?</h3>
-  <p>Prova på utan förpliktelser eller bli medlem direkt.</p>
-  <a href="/#medlemskap" class="cta-btn">Se medlemskap</a>
+  <p>Bli medlem direkt — ditt medlemskap i Skogås ger dig tillgång till båda gymmen.</p>
+  <div class="cta-row">
+    <a href="/#medlemskap" class="cta-btn">Se medlemskap</a>
+    <a href="coming-soon.html" class="cta-btn-alt">Upptäck Skogås</a>
+  </div>
 </section>
 
-<div class="footer">
-  <p>&copy; 2026 Stolt Gym · Built by <a href="https://rezdar.com" target="_blank">Rezdar Digital</a></p>
-</div>
+  <footer id="kontakt">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="https://rezdar.com/stoltgym/images/stoltgym.png" alt="Stolt Gym" style="height: 40px; width: auto; margin-bottom: 16px; filter: invert(1);">
+        <p>Din lokala träningsdestination i Skogås centrum och Trångsund. Mer än bara ett gym.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/profile.php?id=61563815025839" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/stoltgymskogas/" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.google.com/maps/dir//Stolt+Gym+Tr%C3%A5ngsund,+Tr%C3%A5ngsundstorget,+142+60+Tr%C3%A5ngsund/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x465f797e154f491f:0xd803485525f5c0f?sa=X&ved=1t:57443&ictx=111" aria-label="Google" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="none" stroke="#0a0a0a" stroke-width="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Snabblänkar</h5>
+        <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=ROjeG5TiLe8N5OsDRGKr9xVH5&action=membership&valdanlaggning=1&type=kont">Medlemskap</a>
+        <a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">Gruppträning</a>
+        <a href="coming-soon.html">Personlig Träning</a>
+        <a href="coming-soon.html">Shop</a>
+        <a href="coming-soon.html">Lediga Tjänster</a>
+        <a href="/#tider">Öppettider</a>
+        <a href="uppsagning.html">Uppsägning</a>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <p><strong>Skogås:</strong> <a href="https://www.google.com/maps/place/Stolt+Gym+Skog%C3%A5s/@59.2177708,18.150422,653m/data=!3m3!1e3!4b1!5s0x465f7be26b1573ed:0xf272686db7d3b866!4m6!3m5!1s0x465f7bd4f14f9ddf:0xd5c47d5527844294!8m2!3d59.2177681!4d18.1530023!16s%2Fg%2F11t04yqpr2" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(245,245,245,.15)">Skogås Torgväg 3, Skogås Centrum</a></p>
+        <p><strong>Trångsund:</strong> <a href="https://www.google.com/maps/dir//Stolt+Gym+Tr%C3%A5ngsund,+Tr%C3%A5ngsundstorget,+142+60+Tr%C3%A5ngsund/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x465f797e154f491f:0xd803485525f5c0f?sa=X&ved=1t:57443&ictx=111" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(245,245,245,.15)">Trångsund Centrum</a></p>
+        <p style="margin-top: 8px;">Telefon: <a href="tel:0841400035">08-414 000 35</a></p>
+        <p>Mail: <a href="mailto:info@stoltgym.se">info@stoltgym.se</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">Stolt Gym &copy; 2026. Alla rättigheter förbehållna. · <a href="integritetspolicy.html" style="color:rgba(245,245,245,.35);text-decoration:none;border-bottom:1px solid rgba(245,245,245,.1)">Integritetspolicy</a> · <a href="cookiepolicy.html" style="color:rgba(245,245,245,.35);text-decoration:none;border-bottom:1px solid rgba(245,245,245,.1)">Cookies</a> · <a href="villkor.html" style="color:rgba(245,245,245,.35);text-decoration:none;border-bottom:1px solid rgba(245,245,245,.1)">Kampanjvillkor</a> · Built by <a href="https://rezdar.com" target="_blank" rel="noopener" style="color:rgba(245,245,245,.35);text-decoration:none;border-bottom:1px solid rgba(245,245,245,.1)">Rezdar Digital</a></div>
+  </footer>
 
 
 <div class="lb" id="lb" onclick="if(event.target.id==='lb')closeLb()">
@@ -215,5 +334,17 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
   });
 </script>
 
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMenu(){ hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+</script>
 </body>
 </html>
