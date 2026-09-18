@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shoppen — Stolt Gym Skogås</title>
+<title>Stolt Gym Skogås — Träna i hjärtat av gemenskapen</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='8' y='22' width='10' height='20' rx='2' fill='%2300d4ff'/><rect x='46' y='22' width='10' height='20' rx='2' fill='%2300d4ff'/><rect x='18' y='28' width='28' height='8' rx='1' fill='%23f5f5f5'/><rect x='2' y='26' width='6' height='12' rx='2' fill='%2300d4ff'/><rect x='56' y='26' width='6' height='12' rx='2' fill='%2300d4ff'/></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
@@ -72,7 +72,6 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 .hero-place{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,11vw,7rem);line-height:.88;letter-spacing:3px;text-transform:uppercase;color:var(--white)}
 .hero-badge{display:inline-block;background:transparent;border:1px solid rgba(0,212,255,.45);color:var(--accent);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:99px}
 .hero p{font-size:16px;color:var(--white-soft);max-width:520px;margin:26px auto 0;line-height:1.7}
-.hero p strong{color:var(--white);font-weight:600}
 
 /* Image grid */
 .img-grid-item{aspect-ratio:3/4;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:12px;overflow:hidden;position:relative;cursor:default}
@@ -120,6 +119,8 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 .content{max-width:720px;margin:0 auto;padding:0 24px 56px}
 @media(min-width:700px){.content{padding:0 24px 80px}}
 .content h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:20px}
+.highlight{font-size:17px;color:var(--white);font-style:italic;border-left:3px solid var(--accent);padding-left:20px;margin:32px 0}
+.content p strong{color:var(--white);font-weight:600}
 .content p{font-size:15px;color:var(--white-soft);line-height:1.8;margin-bottom:20px}
 .content p strong{color:var(--white);font-weight:500}
 
@@ -194,14 +195,14 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 <section class="hero">
   <h1 class="hero-wordmark">
     <span class="hero-logo-crop"><img src="STOLTGYM_LOGGA_CROPPED.png" alt="STOLT"></span>
-    <span class="hero-place">Shoppen</span>
+    <span class="hero-place">Skogås</span>
   </h1>
-  <span class="hero-badge">Öppet för alla</span>
-  <p><strong>Du behöver inte vara medlem för att handla hos oss.</strong> Kosttillskott, kläder och tillbehör — välkommen in i Skogås, oavsett var du tränar.</p>
+  <span class="hero-badge">Bemannat gym</span>
+  <p>Träna i hjärtat av gemenskapen. Över 1000 kvm med allt du behöver — och en känsla som gör att du kommer tillbaka.</p>
 </section>
 
 <div class="gallery">
-  <h2 class="gallery-title">Ett urval av sortimentet.</h2>
+  <h2 class="gallery-title">Så ser det ut hos oss.</h2>
   <p class="gallery-sub">Dra i sidled för att bläddra.</p>
   <div class="gallery-wrap">
     <button class="gallery-arrow gallery-prev" onclick="scrollGal(-1)" aria-label="Föregående">
@@ -211,56 +212,66 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
     </button>
   <div class="gallery-grid" id="galStrip">
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/shoppen/shoppen-1.jpg" alt="Hyllor med proteinpulver, kasein och gainers" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/shoppen/shoppen-3.jpg" alt="Kreatin, EAA, proteinbars och shakers" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/shoppen/shoppen-2.jpg" alt="Träningskläder och kosttillskott i butiken" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/shoppen/shoppen-4.jpg" alt="Träningskläder för dam från Gorilla Wear" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-entre.jpg" alt="Entrén till Stolt Gym Skogås" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-gym-2.jpg" alt="Maskinpark med fria vikter och bänkar" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-fria-vikter-1.jpg" alt="Hantelställ och bänkar i styrkerummet" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-cardio-2.jpg" alt="Cardioavdelning med löpband, roddmaskin och konstgräs" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-grupptraning.jpg" alt="Gruppträningssalen med ljusinsläpp i taket" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-boxning.jpg" alt="Boxningsrum med säckar och funktionell utrustning" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-booty-corner.jpg" alt="Booty Corner med maskiner för underkropp" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-ben.jpg" alt="Benmaskiner i maskinparken" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-gym-3.jpg" alt="Kabelmaskiner och bänkar" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-fria-vikter-2.jpg" alt="Fria vikter med gott om yta" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-cardio-1.jpg" alt="Löpband och crosstrainers" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-lounge-1.jpg" alt="Loungen med kaffe, kylskåp och sittplatser" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-barnrum.jpg" alt="Barnrummet med leksaker och tv" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-omkladning.jpg" alt="Omklädningsrum med skåp" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-dusch.jpg" alt="Duschutrymmen i marmor" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/skogas/skogas-solarium.jpg" alt="Solarium" loading="lazy"></div>
   </div>
   </div>
 </div>
 
 <div class="content">
-  <h2>Fyll på inför passet.</h2>
-  <p>I vår butik i Skogås hittar du kosttillskott från välkända märken, träningskläder och det småsaker som brukar ta slut precis när du behöver dem.</p>
+  <h2>Mer än ett gym.</h2>
+  <p>På Stolt Gym i Skogås får du mer än bara ett gym — du får en plats att utvecklas på, tillsammans med andra.</p>
 
-  <p>Handlar du på plats slipper du frakt och väntetid — du tar med dig det hem direkt. Personalen hjälper dig gärna att hitta rätt, oavsett om du tränar hos oss eller bara tittar in.</p>
+  <p>Med över 1000 kvm träningsyta erbjuder vi en komplett träningsmiljö med moderna maskiner, fria vikter och ett fullt utrustat cardiorum. Här finns även boxningsrum för dig som vill variera träningen och ett brett utbud av gruppträning för extra motivation.</p>
+
+  <p class="highlight">Det som verkligen skiljer oss är känslan. En familjär miljö, där alla känner sig välkomna — oavsett nivå eller mål.</p>
 
   <div class="features-list">
     <div class="feature-item">
       <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Proteinpulver, kasein och gainers
+      Gruppträning
     </div>
     <div class="feature-item">
       <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Kreatin, EAA och pre workout
+      Boxningsrum
     </div>
     <div class="feature-item">
       <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Proteinbars, shakes och snacks
+      Stort utbud av maskiner &amp; fria vikter
     </div>
     <div class="feature-item">
       <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Träningskläder för dam och herr
+      Handdukar
     </div>
     <div class="feature-item">
       <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Shakers, flaskor och tillbehör
-    </div>
-    <div class="feature-item">
-      <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Öppet för alla — medlemskap krävs inte
+      Gratis kaffe &amp; te
     </div>
   </div>
 
-  <p>Butiken är öppen under bemannade tider i Skogås.</p>
+  <p><strong>Här tränar du inte bara — du blir en del av något.</strong></p>
 </div>
 
 <section class="cta">
-  <h3>Alla är välkomna.</h3>
-  <p>Butiken ligger i receptionen på Stolt Gym Skogås och är öppen under bemannade tider. Inget medlemskap krävs för att handla.</p>
+  <h3>Redo att komma igång?</h3>
+  <p>Bli medlem direkt — ditt medlemskap i Skogås ger dig tillgång till båda gymmen.</p>
   <div class="cta-row">
-    <a href="/#tider" class="cta-btn">Se öppettider</a>
-    <a href="/#medlemskap" class="cta-btn-alt">Bli medlem</a>
+    <a href="/#medlemskap" class="cta-btn">Se medlemskap</a>
+    <a href="trangsund.html" class="cta-btn-alt">Upptäck Trångsund</a>
   </div>
 </section>
 
