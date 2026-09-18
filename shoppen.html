@@ -9,6 +9,8 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 a{text-decoration:none;color:inherit}
+button{border:none;background:none;cursor:pointer;font-family:inherit;color:inherit;-webkit-appearance:none;appearance:none;outline:none}
+button::-moz-focus-inner{border:0;padding:0}
 :root{
   --black:#0a0a0a;--dark:#111111;--dark-card:#161616;--dark-border:#222222;
   --white:#f5f5f5;--white-soft:#b0b0b0;
@@ -37,6 +39,7 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .nav-cta:hover{transform: scale(1.04); box-shadow: 0 0 30px var(--accent-glow);}
 .hamburger{display: flex; flex-direction: column; gap: 5px; background: none; padding: 8px;}
 .hamburger span{display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; border-radius: 2px;}
+.nav.menu-open .nav-cta{opacity:0;pointer-events:none;transition:opacity .25s}
 .hamburger.open span:nth-child(1){transform: rotate(45deg) translate(5px, 5px);}
 .hamburger.open span:nth-child(2){opacity: 0;}
 .hamburger.open span:nth-child(3){transform: rotate(-45deg) translate(5px, -5px);}
@@ -69,6 +72,7 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 .hero-place{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,11vw,7rem);line-height:.88;letter-spacing:3px;text-transform:uppercase;color:var(--white)}
 .hero-badge{display:inline-block;background:transparent;border:1px solid rgba(0,212,255,.45);color:var(--accent);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:99px}
 .hero p{font-size:16px;color:var(--white-soft);max-width:520px;margin:26px auto 0;line-height:1.7}
+.hero p strong{color:var(--white);font-weight:600}
 
 /* Image grid */
 .img-grid-item{aspect-ratio:3/4;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:12px;overflow:hidden;position:relative;cursor:default}
@@ -192,8 +196,8 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
     <span class="hero-logo-crop"><img src="STOLTGYM_LOGGA_CROPPED.png" alt="STOLT"></span>
     <span class="hero-place">Shoppen</span>
   </h1>
-  <span class="hero-badge">Skogås</span>
-  <p>Allt du behöver för träningen, direkt på plats. Kosttillskott, kläder och tillbehör — inget krångel med frakt eller väntan på leverans.</p>
+  <span class="hero-badge">Öppet för alla</span>
+  <p><strong>Du behöver inte vara medlem för att handla hos oss.</strong> Kosttillskott, kläder och tillbehör — välkommen in i Skogås, oavsett var du tränar.</p>
 </section>
 
 <div class="gallery">
@@ -219,7 +223,7 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
   <h2>Fyll på inför passet.</h2>
   <p>I vår butik i Skogås hittar du kosttillskott från välkända märken, träningskläder och det småsaker som brukar ta slut precis när du behöver dem.</p>
 
-  <p>Handlar du på plats slipper du frakt och väntetid — du tar med dig det hem direkt efter passet. Personalen hjälper dig gärna att hitta rätt.</p>
+  <p>Handlar du på plats slipper du frakt och väntetid — du tar med dig det hem direkt. Personalen hjälper dig gärna att hitta rätt, oavsett om du tränar hos oss eller bara tittar in.</p>
 
   <div class="features-list">
     <div class="feature-item">
@@ -242,14 +246,18 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
       <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
       Shakers, flaskor och tillbehör
     </div>
+    <div class="feature-item">
+      <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+      Öppet för alla — medlemskap krävs inte
+    </div>
   </div>
 
   <p>Butiken är öppen under bemannade tider i Skogås.</p>
 </div>
 
 <section class="cta">
-  <h3>Välkommen in.</h3>
-  <p>Butiken ligger i receptionen på Stolt Gym Skogås och är öppen under bemannade tider.</p>
+  <h3>Alla är välkomna.</h3>
+  <p>Butiken ligger i receptionen på Stolt Gym Skogås och är öppen under bemannade tider. Inget medlemskap krävs för att handla.</p>
   <div class="cta-row">
     <a href="/#tider" class="cta-btn">Se öppettider</a>
     <a href="/#medlemskap" class="cta-btn-alt">Bli medlem</a>
@@ -314,8 +322,13 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
     mobileMenu.classList.toggle('open');
+    nav.classList.toggle('menu-open');
   });
-  function closeMenu(){ hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+  function closeMenu(){
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    nav.classList.remove('menu-open');
+  }
 </script>
 </body>
 </html>
