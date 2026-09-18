@@ -85,11 +85,36 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 .gallery-title{margin-top:0}
 @media(min-width:700px){.gallery{padding:0 24px 80px}}
 .gallery-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:8px}
-.gallery-sub{font-size:14px;color:var(--white-soft);margin-bottom:28px}
+.gallery-sub{font-size:14px;color:var(--white-soft);margin-bottom:22px}
 .content a{color:var(--accent);text-decoration:underline}
-.gallery-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-.gallery-grid>.img-grid-item{flex:0 0 calc(50% - 5px)}
-.gallery-grid .img-grid-item{aspect-ratio:3/4}
+.gallery-wrap{position:relative}
+.gallery-grid{
+  display:flex;gap:12px;
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding:4px 0 8px;
+}
+.gallery-grid::-webkit-scrollbar{display:none}
+.gallery-grid>.img-grid-item{
+  flex:0 0 min(82%,420px);
+  aspect-ratio:3/4;
+  scroll-snap-align:center;
+}
+.gallery-grid>.img-grid-item:last-child{margin-right:0}
+.gallery-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(10,10,10,.75);backdrop-filter:blur(8px);
+  border:1px solid var(--dark-border);color:var(--white);
+  cursor:pointer;display:none;align-items:center;justify-content:center;
+  transition:background .25s,border-color .25s;z-index:5;
+}
+.gallery-arrow:hover{background:var(--accent);color:var(--black);border-color:var(--accent)}
+.gallery-arrow svg{width:20px;height:20px}
+.gallery-prev{left:-10px}
+.gallery-next{right:-10px}
+@media(min-width:900px){.gallery-arrow{display:flex}}
 
 /* Lightbox */
 .lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:32px}
@@ -132,12 +157,7 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 /* Footer */
 
 
-@media(min-width:600px){
-  .gallery-grid>.img-grid-item{flex:0 0 calc(33.333% - 6.67px)}
-}
-@media(min-width:950px){
-  .gallery-grid>.img-grid-item{flex:0 0 calc(25% - 7.5px)}
-}
+
 </style>
 </head>
 <body>
@@ -197,8 +217,15 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 
 <div class="gallery">
   <h2 class="gallery-title">Så ser det ut hos oss.</h2>
-  <p class="gallery-sub">Klicka på en bild för att se den större.</p>
-  <div class="gallery-grid">
+  <p class="gallery-sub">Dra i sidled för att bläddra. Klicka på en bild för att se den större.</p>
+  <div class="gallery-wrap">
+    <button class="gallery-arrow gallery-prev" onclick="scrollGal(-1)" aria-label="Föregående">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="gallery-arrow gallery-next" onclick="scrollGal(1)" aria-label="Nästa">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  <div class="gallery-grid" id="galStrip">
     <div class="img-grid-item" onclick="openLb(this)"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-fria-vikter.jpg" alt="Fria vikter och bänkar på Stolt Gym Trångsund" loading="lazy"></div>
     <div class="img-grid-item" onclick="openLb(this)"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-cardio-1.jpg" alt="Cardioavdelning med löpband och crosstrainers" loading="lazy"></div>
     <div class="img-grid-item" onclick="openLb(this)"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-maskiner.jpg" alt="Maskiner för bröst och axlar från Gymleco" loading="lazy"></div>
@@ -210,6 +237,7 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
     <div class="img-grid-item" onclick="openLb(this)"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-kettlebells.jpg" alt="Kettlebells, skivstänger och gummiband" loading="lazy"></div>
     <div class="img-grid-item" onclick="openLb(this)"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-cardio-2.jpg" alt="Vy in mot cardioavdelningen" loading="lazy"></div>
     <div class="img-grid-item" onclick="openLb(this)"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-omkladning.jpg" alt="Dusch och omklädningsutrymme" loading="lazy"></div>
+  </div>
   </div>
 </div>
 
@@ -301,6 +329,12 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 </div>
 
 <script>
+  function scrollGal(d){
+    var strip = document.getElementById('galStrip');
+    var card = strip.querySelector('.img-grid-item');
+    strip.scrollBy({left: d * (card.offsetWidth + 12), behavior: 'smooth'});
+  }
+
   var lbItems = [], lbIndex = 0;
   function lbCollect(){ lbItems = Array.prototype.slice.call(document.querySelectorAll('.img-grid-item img')); }
   function openLb(el){
