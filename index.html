@@ -443,6 +443,35 @@
 
     /* ===== SECTIONS ===== */
     section { padding: 80px 24px; }
+    /* ===== HERO PÅ MOBIL ===== */
+    @media (max-width: 768px) {
+      /* Starkare scrim — videon är ljus och åt texten tidigare */
+      .hero-video-wrap::after {
+        background: linear-gradient(
+          to bottom,
+          rgba(10,10,10,0.45) 0%,
+          rgba(10,10,10,0.25) 22%,
+          rgba(10,10,10,0.65) 58%,
+          rgba(10,10,10,0.97) 100%
+        );
+      }
+      /* Dubbel sidopadding blev 48px — nu bara sektionens 24px */
+      .hero-content { padding: 0 0 40px; }
+      .hero-tag { margin-bottom: 14px; }
+      .hero-sub {
+        font-size: 15px;
+        line-height: 1.55;
+        max-width: 32ch;
+        text-wrap: balance;
+        margin-bottom: 18px;
+      }
+      .hero-promo { margin: 0 0 20px; font-size: 12px; }
+      /* Knappar lika breda i stället för ojämn radbrytning */
+      .hero-btns { flex-direction: column; align-items: stretch; gap: 10px; }
+      .hero-btns .btn-primary,
+      .hero-btns .btn-outline { text-align: center; width: 100%; }
+    }
+
     @media (min-width: 769px) {
       section { padding: 120px max(48px, calc((100% - 1200px) / 2)); }
       .hero { padding: 120px 48px; }
@@ -1335,7 +1364,7 @@
       <li><a href="#pt">Personlig Träning</a></li>
       <li><a href="#medlemskap">Medlemskap</a></li>
       <li><a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">Gruppträning</a></li>
-      <li><a href="coming-soon.html">Shop</a></li>
+      <li><a href="shoppen.html">Shop</a></li>
       <li class="nav-dropdown">
         <a href="#kontakt">Kontakt</a>
         <div class="nav-submenu">
@@ -1361,7 +1390,7 @@
     <a href="#pt" onclick="closeMenu()">PT</a>
     <a href="#medlemskap" onclick="closeMenu()">Medlemskap</a>
     <a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">Gruppträning</a>
-    <a href="coming-soon.html">Shop</a>
+    <a href="shoppen.html">Shop</a>
     <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
     <a href="#tider" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">Öppettider</a>
     <a href="#faq" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">FAQ</a>
@@ -1431,7 +1460,7 @@
       <svg class="qb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       <span class="qb-label">Grupppass</span>
     </a>
-    <a href="coming-soon.html">
+    <a href="shoppen.html">
       <svg class="qb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="qb-label">Shop</span>
     </a>
@@ -1955,7 +1984,7 @@
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=ROjeG5TiLe8N5OsDRGKr9xVH5&action=membership&valdanlaggning=1&type=kont">Medlemskap</a>
         <a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">Gruppträning</a>
         <a href="coming-soon.html">Personlig Träning</a>
-        <a href="coming-soon.html">Shop</a>
+        <a href="shoppen.html">Shop</a>
         <a href="coming-soon.html">Lediga Tjänster</a>
         <a href="#tider">Öppettider</a>
         <a href="uppsagning.html">Uppsägning</a>
