@@ -2227,14 +2227,50 @@
   </div>
 </div>
 
-<!-- ===== COOKIE BANNER ===== -->
-<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);border-top:1px solid #222;padding:16px 24px;font-size:13px;color:#b0b0b0">
-  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-    <p style="margin:0;line-height:1.6;flex:1;min-width:240px">Vi använder cookies och externa resurser för att webbplatsen ska fungera. Läs vår <a href="cookiepolicy.html" style="color:#00d4ff;text-decoration:underline">cookiepolicy</a> och <a href="integritetspolicy.html" style="color:#00d4ff;text-decoration:underline">integritetspolicy</a>.</p>
-    <button onclick="document.getElementById('cookieBanner').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#00d4ff;color:#0a0a0a;border:none;padding:10px 24px;font-size:13px;font-weight:600;border-radius:8px;cursor:pointer;white-space:nowrap">Jag förstår</button>
+
+
+<!-- ===== COOKIE-SAMTYCKE + META PIXEL ===== -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(10,10,10,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid #222;padding:18px 24px;font-family:'DM Sans',sans-serif;font-size:13px;color:#b0b0b0">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
+    <p style="margin:0;line-height:1.6;flex:1;min-width:240px">Vi använder cookies för att sidan ska fungera, och med ditt samtycke även för att mäta hur våra annonser fungerar. Läs mer i vår <a href="cookiepolicy.html" style="color:#00d4ff;text-decoration:underline">cookiepolicy</a> och <a href="integritetspolicy.html" style="color:#00d4ff;text-decoration:underline">integritetspolicy</a>.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button onclick="cookieChoice('denied')" style="background:transparent;border:1px solid #333;color:#b0b0b0;padding:10px 22px;font-size:13px;font-weight:500;font-family:inherit;border-radius:8px;cursor:pointer;white-space:nowrap">Endast nödvändiga</button>
+      <button onclick="cookieChoice('granted')" style="background:#00d4ff;border:none;color:#0a0a0a;padding:10px 24px;font-size:13px;font-weight:600;font-family:inherit;border-radius:8px;cursor:pointer;white-space:nowrap">Godkänn alla</button>
+    </div>
   </div>
 </div>
-<script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBanner').style.display='block';</script>
+
+<script>
+(function(){
+  var KEY = 'stoltCookieConsent';
+
+  function loadPixel(){
+    if (window.fbq) return;
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1650196453183856');
+    fbq('track', 'PageView');
+  }
+
+  window.cookieChoice = function(v){
+    try { localStorage.setItem(KEY, v); } catch(e){}
+    document.getElementById('cookieBanner').style.display = 'none';
+    if (v === 'granted') loadPixel();
+  };
+
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch(e){}
+
+  if (saved === 'granted') loadPixel();
+  else if (saved !== 'denied') document.getElementById('cookieBanner').style.display = 'block';
+})();
+</script>
 
 </body>
 </html>

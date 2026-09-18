@@ -84,6 +84,12 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
       <td>Vid inskick</td>
     </tr>
     <tr>
+      <td>Marknadsföring</td>
+      <td>Meta (Facebook)</td>
+      <td>Meta Pixel mäter hur våra annonser fungerar och kan användas för att visa relevanta annonser på Facebook och Instagram. Laddas endast med ditt samtycke.</td>
+      <td>Upp till 90 dagar</td>
+    </tr>
+    <tr>
       <td>Extern resurs</td>
       <td>GymControl</td>
       <td>Medlemsregistrering och kontantkort. Extern sida som öppnas vid klick.</td>
@@ -92,7 +98,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
   </table>
 
   <h2>3. Cookies från tredje part</h2>
-  <p>Vi använder inte analys-, marknadsförings- eller spårningscookies (t.ex. Google Analytics eller Facebook Pixel) på denna webbplats. Vi använder inga sociala medie-plugins som laddar cookies automatiskt.</p>
+  <p>Vi använder Meta Pixel för att mäta resultatet av vår annonsering på Facebook och Instagram. Den laddas <strong>endast om du godkänner det</strong> i vår cookie-banner. Väljer du "Endast nödvändiga" laddas den aldrig. Vi använder ingen övrig analysspårning, till exempel Google Analytics, och inga sociala medie-plugins som laddar cookies automatiskt.</p>
 
   <h2>4. Externa resurser och tredjelandsöverföring</h2>
   <p>Vid laddning av Google Fonts överförs teknisk data (IP-adress, webbläsarinfo) till Googles servrar som kan finnas utanför EU/EES. Google behandlar denna data enligt sina <a href="https://policies.google.com/privacy" target="_blank">integritetspolicyer</a>. Överföringen stöds av EU-kommissionens adekvansbeslut och standardavtalsklausuler.</p>
@@ -107,7 +113,12 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
   </ul>
 
   <h2>6. Ditt samtycke</h2>
-  <p>Vid ditt första besök på vår webbplats visas en cookie-banner. Genom att klicka "Jag förstår" godkänner du att de externa resurserna som beskrivs ovan laddas. Du kan ändra ditt val genom att rensa cookies i din webbläsare.</p>
+  <p>Vid ditt första besök visas en cookie-banner med två val:</p>
+  <ul>
+    <li><strong>Endast nödvändiga</strong> — inga marknadsföringscookies laddas. Sidan fungerar som vanligt.</li>
+    <li><strong>Godkänn alla</strong> — utöver det nödvändiga laddas även Meta Pixel.</li>
+  </ul>
+  <p>Ditt val sparas lokalt i din webbläsare. Du kan när som helst ändra dig genom att rensa webbplatsdata för stoltgym.se i din webbläsare, varpå bannern visas igen.</p>
 
   <h2>7. Ändringar</h2>
   <p>Vi kan komma att uppdatera denna cookiepolicy. Den senaste versionen finns alltid tillgänglig på denna sida.</p>
@@ -119,6 +130,50 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 <div class="footer">
   <p>&copy; 2026 Stolt Gym · Built by <a href="https://rezdar.com" target="_blank">Rezdar Digital</a></p>
 </div>
+
+
+<!-- ===== COOKIE-SAMTYCKE + META PIXEL ===== -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(10,10,10,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid #222;padding:18px 24px;font-family:'DM Sans',sans-serif;font-size:13px;color:#b0b0b0">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
+    <p style="margin:0;line-height:1.6;flex:1;min-width:240px">Vi använder cookies för att sidan ska fungera, och med ditt samtycke även för att mäta hur våra annonser fungerar. Läs mer i vår <a href="cookiepolicy.html" style="color:#00d4ff;text-decoration:underline">cookiepolicy</a> och <a href="integritetspolicy.html" style="color:#00d4ff;text-decoration:underline">integritetspolicy</a>.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button onclick="cookieChoice('denied')" style="background:transparent;border:1px solid #333;color:#b0b0b0;padding:10px 22px;font-size:13px;font-weight:500;font-family:inherit;border-radius:8px;cursor:pointer;white-space:nowrap">Endast nödvändiga</button>
+      <button onclick="cookieChoice('granted')" style="background:#00d4ff;border:none;color:#0a0a0a;padding:10px 24px;font-size:13px;font-weight:600;font-family:inherit;border-radius:8px;cursor:pointer;white-space:nowrap">Godkänn alla</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY = 'stoltCookieConsent';
+
+  function loadPixel(){
+    if (window.fbq) return;
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1650196453183856');
+    fbq('track', 'PageView');
+  }
+
+  window.cookieChoice = function(v){
+    try { localStorage.setItem(KEY, v); } catch(e){}
+    document.getElementById('cookieBanner').style.display = 'none';
+    if (v === 'granted') loadPixel();
+  };
+
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch(e){}
+
+  if (saved === 'granted') loadPixel();
+  else if (saved !== 'denied') document.getElementById('cookieBanner').style.display = 'block';
+})();
+</script>
 
 </body>
 </html>
