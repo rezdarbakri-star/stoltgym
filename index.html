@@ -573,10 +573,13 @@
       grid-template-columns: 1fr;
       gap: 24px;
       margin-top: 48px;
-      max-width: 1000px;
+      max-width: 1100px;
     }
-    @media (min-width: 769px) {
+    @media (min-width: 620px) {
       .pt-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 950px) {
+      .pt-grid { grid-template-columns: repeat(3, 1fr); }
     }
     .pt-card {
       background: var(--dark-card);
@@ -643,6 +646,32 @@
       box-shadow: 0 0 30px var(--accent-glow);
     }
     .btn-book { border: none; cursor: pointer; font-family: inherit; }
+
+    /* ===== PT BUY ===== */
+    .pt-buy {
+      max-width: 1100px;
+      margin: 40px auto 0;
+      padding: 28px 24px;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .pt-buy-text { font-size: 15px; color: var(--white); margin: 0; }
+    .pt-buy-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      background: var(--accent); color: var(--black);
+      font-weight: 700; font-size: 13px; letter-spacing: 1px;
+      text-transform: uppercase; border-radius: 100px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .3s;
+    }
+    .pt-buy-btn:hover { transform: scale(1.04); box-shadow: 0 0 30px var(--accent-glow); }
 
     /* ===== PT BOOKING MODAL ===== */
     .bk-overlay {
@@ -1555,6 +1584,28 @@
           </button>
         </div>
       </div>
+
+      <div class="pt-card reveal">
+        <div class="pt-photo">
+          <img src="https://rezdar.com/stoltgym/images/PT3.webp" alt="Jessica - Personlig Tränare">
+        </div>
+        <div class="pt-info">
+          <h3>Jessica</h3>
+          <p>Jessica är en varm och lyhörd personlig tränare med över 15 års erfarenhet inom träning, dans, yoga och gruppträning. Med fokus på styrka, balans, rörlighet och uthållighet hjälper hon dig att utvecklas och forma en starkare kropp på ett hållbart sätt. Jessica möter dig där du är och anpassar träningen efter dina mål och förutsättningar. Med trygg guidning, positiv energi och mycket träningsglädje hjälper hon dig att utvecklas i din egen takt — oavsett var du befinner dig på din träningsresa.</p>
+          <button type="button" class="btn-book" onclick="openBooking('jessica')">
+            Boka Jessica
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-buy reveal">
+      <p class="pt-buy-text">Vill du köpa PT-timmar direkt?</p>
+      <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="pt-buy-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Köp PT-timmar
+      </a>
     </div>
   </section>
 
@@ -1753,13 +1804,11 @@
         </div>
         <div class="hours-card">
           <h3 class="hours-card-title">Avvikande tider</h3>
-          <div class="hours-row"><span class="hours-day">30/4 Valborg</span><span class="hours-time">11:00–18:00</span></div>
-          <div class="hours-row"><span class="hours-day">1/5</span><span class="hours-time">Obemannat</span></div>
-          <div class="hours-row"><span class="hours-day">14/5 Kristi himmelsfärd</span><span class="hours-time">17:00–21:00</span></div>
-          <div class="hours-row"><span class="hours-day">6/6 Nationaldagen</span><span class="hours-time">Obemannat</span></div>
-          <div class="hours-row"><span class="hours-day">19/6 Midsommarafton</span><span class="hours-time">Obemannat</span></div>
-          <div class="hours-row"><span class="hours-day">20/6 Midsommardagen</span><span class="hours-time">12:00–16:00</span></div>
-          <div class="hours-row"><span class="hours-day">21/6</span><span class="hours-time">13:00–18:00</span></div>
+          <div class="hours-row"><span class="hours-day">23/12</span><span class="hours-time">12:00–20:00</span></div>
+          <div class="hours-row"><span class="hours-day">24/12 Julafton</span><span class="hours-time">Obemannat</span></div>
+          <div class="hours-row"><span class="hours-day">25/12 Juldagen</span><span class="hours-time">12:00–18:00</span></div>
+          <div class="hours-row"><span class="hours-day">31/12 Nyårsafton</span><span class="hours-time">13:00–17:00</span></div>
+          <div class="hours-row"><span class="hours-day">1/1 Nyårsdagen</span><span class="hours-time">Obemannat</span></div>
         </div>
         <div class="hours-card">
           <h3 class="hours-card-title">Sommartider bemannat<span class="hours-date-range">27/6–16/8</span></h3>
@@ -1958,13 +2007,19 @@
     // ===== PT BOOKING MODAL =====
     var PT = {
       alexander: { name: 'Alexander Annelin', alias: '4d6a50c91027e74db9e9e3c55d2124e3', mail: 'alexander@stoltgym.se' },
-      jonnie:    { name: 'Jonnie Danielsson', alias: '2716c2cf281b6cdfd37f3519686e5443', mail: 'jonnie@stoltgym.se' }
+      jonnie:    { name: 'Jonnie Danielsson', alias: '2716c2cf281b6cdfd37f3519686e5443', mail: 'jonnie@stoltgym.se' },
+      jessica:   { name: 'Jessica', alias: 'f9cc4f72259d1a8e46583d9dc47f2118', mail: 'jessica@stoltgym.se' }
     };
     var bkCurrent = null;
 
     function openBooking(who) {
-      bkCurrent = who;
       var t = PT[who];
+      // Alias ännu inte aktiverad -> öppna mejlklienten istället för formuläret
+      if (t.alias.indexOf('_ALIAS_') !== -1) {
+        window.location.href = 'mailto:' + t.mail + '?subject=PT-bokning%20%E2%80%94%20' + encodeURIComponent(t.name);
+        return;
+      }
+      bkCurrent = who;
       document.getElementById('bkTitle').textContent = 'Boka ' + t.name.split(' ')[0];
       document.getElementById('bkSub').textContent = 'Fyll i dina uppgifter så hör ' + t.name.split(' ')[0] + ' av sig till dig.';
       document.getElementById('bkAltMail').href = 'mailto:' + t.mail + '?subject=PT-bokning';
