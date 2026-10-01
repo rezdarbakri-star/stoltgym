@@ -297,31 +297,6 @@
       margin-bottom: 32px;
       animation: fadeUp 0.8s ease both 0.6s;
     }
-    .hero-promo {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin: 18px 0 26px;
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--white-soft);
-      animation: fadeUp 0.8s ease both 0.7s;
-    }
-    .hero-promo-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-      box-shadow: 0 0 0 0 rgba(0,212,255,.5);
-      animation: promoPing 2.4s ease-out infinite;
-    }
-    @keyframes promoPing {
-      0%   { box-shadow: 0 0 0 0 rgba(0,212,255,.45); }
-      70%  { box-shadow: 0 0 0 8px rgba(0,212,255,0); }
-      100% { box-shadow: 0 0 0 0 rgba(0,212,255,0); }
-    }
-
     .hero-btns {
       display: flex;
       gap: 12px;
@@ -418,7 +393,6 @@
         text-wrap: balance;
         margin-bottom: 18px;
       }
-      .hero-promo { margin: 0 0 20px; font-size: 12px; }
       /* Knappar lika breda i stället för ojämn radbrytning */
       .hero-btns { flex-direction: column; align-items: stretch; gap: 10px; }
       .hero-btns .btn-primary,
@@ -459,7 +433,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 24px;
-      margin-top: 48px;
+      margin: 48px auto 0;
       max-width: 1200px;
     }
     @media (min-width: 769px) {
@@ -540,7 +514,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 16px;
-      margin-top: 40px;
+      margin: 40px auto 0;
       max-width: 1200px;
     }
     .amenities-scroll > .amenity-card { flex: 0 0 100%; }
@@ -556,7 +530,20 @@
       overflow: hidden;
       border-radius: 12px 12px 0 0;
       background: var(--dark);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    .amenity-ph {
+      position: absolute;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white-soft);
+      opacity: .3;
+    }
+    .amenity-img img { position: relative; z-index: 1; }
     .amenity-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
     .amenity-card:hover .amenity-img img { transform: scale(1.04); }
     .amenity-card h3 {
@@ -614,7 +601,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 24px;
-      margin-top: 48px;
+      margin: 48px auto 0;
       max-width: 1200px;
     }
     @media (min-width: 620px) {
@@ -835,7 +822,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 20px;
-      margin-top: 48px;
+      margin: 48px auto 0;
       max-width: 1200px;
     }
     @media (min-width: 769px) {
@@ -901,6 +888,8 @@
       grid-template-columns: 1fr;
       gap: 16px;
       max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
     @media (min-width: 600px) {
       .pricing-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1393,7 +1382,6 @@
       <div class="hero-tag">Skogås &bull; Trångsund</div>
       <h1>TRÄNA<br><span class="hero-logo-crop"><img src="STOLTGYM_LOGGA_CROPPED.png" alt="STOLT"></span></h1>
       <p class="hero-sub">Ett familjärt gym där gemenskap, träningsglädje och utveckling står i fokus. Här är alla välkomna.</p>
-      <p class="hero-promo"><span class="hero-promo-dot"></span>Välj din bonus som ny medlem</p>
       <div class="hero-btns">
         <a href="#medlemskap" class="btn-primary">Bli Medlem</a>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="btn-outline">Köp PT-timmar</a>
@@ -1474,7 +1462,7 @@
         <p>Stående solarium, 13 minuter per session. Ingår för våra medlemmar och kostar 150 kr för icke-medlemmar. 18-årsgräns gäller.</p>
       </div>
       <div class="amenity-card reveal">
-        <div class="amenity-img"><img src="https://rezdar.com/stoltgym/images/inbody.jpg" alt="InBody 770-våg på Stolt Gym" loading="lazy"></div>
+        <div class="amenity-img"><span class="amenity-ph">Bild kommer</span><img src="https://rezdar.com/stoltgym/images/okt1/inbody.jpg" alt="InBody 770-våg på Stolt Gym" loading="lazy" onerror="this.remove()"></div>
         <h3>InBody 770-våg</h3>
         <p>Få en tydligare bild av din kroppssammansättning. Vägningen görs tillsammans med vår receptionspersonal under bemannade tider. 399 kr för medlemmar, 499 kr för icke-medlemmar.</p>
       </div>
