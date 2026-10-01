@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stolt Gym Trångsund — Träna smidigt med helt ny utrustning</title>
+<title>Gruppträning — Stolt Gym</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='8' y='22' width='10' height='20' rx='2' fill='%2300d4ff'/><rect x='46' y='22' width='10' height='20' rx='2' fill='%2300d4ff'/><rect x='18' y='28' width='28' height='8' rx='1' fill='%23f5f5f5'/><rect x='2' y='26' width='6' height='12' rx='2' fill='%2300d4ff'/><rect x='56' y='26' width='6' height='12' rx='2' fill='%2300d4ff'/></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
@@ -119,6 +119,7 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 .content{max-width:720px;margin:0 auto;padding:0 24px 56px}
 @media(min-width:700px){.content{padding:0 24px 80px}}
 .content h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:20px}
+.content p strong{color:var(--white);font-weight:600}
 .content p{font-size:15px;color:var(--white-soft);line-height:1.8;margin-bottom:20px}
 .content p strong{color:var(--white);font-weight:500}
 
@@ -193,14 +194,14 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 <section class="hero">
   <h1 class="hero-wordmark">
     <span class="hero-logo-crop"><img src="STOLTGYM_LOGGA_CROPPED.png" alt="STOLT"></span>
-    <span class="hero-place">Trångsund</span>
+    <span class="hero-place">Träna tillsammans</span>
   </h1>
-  <span class="hero-badge">Obemannat gym</span>
-  <p>Träna smidigt, med helt ny utrustning. Stolt Gym i Trångsund är det perfekta valet för dig som vill ha en enkel och effektiv träningsupplevelse.</p>
+  <span class="hero-badge">Gruppträning</span>
+  <p>Hos Stolt Gym erbjuder vi gruppträning för olika nivåer och träningsmål. Variera din träning med allt från styrka och kondition till boxning, yoga och seniorträning — tillsammans med våra instruktörer och andra medlemmar.</p>
 </section>
 
 <div class="gallery">
-  <h2 class="gallery-title">Så ser det ut hos oss.</h2>
+  <h2 class="gallery-title">Våra pass.</h2>
   <p class="gallery-sub">Dra i sidled för att bläddra.</p>
   <div class="gallery-wrap">
     <button class="gallery-arrow gallery-prev" onclick="scrollGal(-1)" aria-label="Föregående">
@@ -210,53 +211,37 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
     </button>
   <div class="gallery-grid" id="galStrip">
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-fria-vikter.jpg" alt="Fria vikter och bänkar på Stolt Gym Trångsund" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-cardio-1.jpg" alt="Cardioavdelning med löpband och crosstrainers" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-maskiner.jpg" alt="Maskiner för bröst och axlar från Gymleco" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-smith.jpg" alt="Smithmaskin med skivstång och vikter" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-hantlar-2.jpg" alt="Hantelställ med Gymleco-hantlar" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-benpress.jpg" alt="Benpress och bencurl från Gymleco" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-ben.jpg" alt="Benmaskiner vid fönstren" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-hantlar-1.jpg" alt="Hantelställ och bänkar" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-kettlebells.jpg" alt="Kettlebells, skivstänger och gummiband" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-cardio-2.jpg" alt="Vy in mot cardioavdelningen" loading="lazy"></div>
-    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/trangsund/trangsund-omkladning.jpg" alt="Dusch och omklädningsutrymme" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-gruppbild.jpg" alt="Gruppträningsgänget på Stolt Gym" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-pump.jpg" alt="Pump-pass med skivstång och step" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-boxning.jpg" alt="Boxningspass" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-core.jpg" alt="Corepass i gruppträningssalen" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-upper-body.jpg" alt="Upper body-pass" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-booty-step.jpg" alt="Booty Step-pass" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-run-lift-1.jpg" alt="Run &amp; Lift-pass" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-run-lift-2.jpg" alt="Run &amp; Lift med löpband och vikter" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-yoga.jpg" alt="Yogapass i salen" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-friday-fun.jpg" alt="Friday Fun-pass" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-nyborjare.jpg" alt="Nybörjarintroduktion i mindre grupp" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-seniortraning.jpg" alt="Seniorträningsgruppen" loading="lazy"></div>
+    <div class="img-grid-item"><img src="https://rezdar.com/stoltgym/images/grupptraning/gt-alexander.jpg" alt="Instruktör leder pass i gruppträningssalen" loading="lazy"></div>
   </div>
   </div>
 </div>
 
 <div class="content">
-  <h2>Kompakt och komplett.</h2>
-  <p>Ett mindre men komplett gym, utrustat med sprillans nya maskiner från Gynleco — noggrant utvalt för att ge dig allt du behöver för ett riktigt bra pass.</p>
+  <h2>Ny på gymmet?</h2>
+  <p>Eller vill du utveckla din teknik? På söndagar varvar vi mellan <strong>Nybörjarpass</strong> och <strong>Lyftarteknik</strong>.</p>
 
-  <p>Anläggningen är obemannad — perfekt för dig som vill träna ostört i en lugn och modern miljö.</p>
+  <p>På Nybörjarpasset får du under 45 minuter lära känna gymmets maskiner och träna i en mindre grupp med guidning av instruktör.</p>
 
-  <div class="features-list">
-    <div class="feature-item">
-      <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Helt ny utrustning från Gymleco
-    </div>
-    <div class="feature-item">
-      <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Kompakt och komplett gym
-    </div>
-    <div class="feature-item">
-      <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Generösa öppettider
-    </div>
-    <div class="feature-item">
-      <div class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-      Smidig och lättillgänglig anläggning
-    </div>
-  </div>
+  <p>Lyftarteknik passar dig som vill förbättra din teknik, känna dig säkrare i dina lyft och utvecklas i din styrketräning.</p>
 </div>
 
 <section class="cta">
-  <h3>Redo att komma igång?</h3>
-  <p>Bli medlem direkt — ditt medlemskap i Skogås ger dig tillgång till båda gymmen.</p>
+  <h3>Hitta ditt pass.</h3>
+  <p>Schemat uppdateras löpande. Boka din plats direkt via GymControl.</p>
   <div class="cta-row">
-    <a href="/#medlemskap" class="cta-btn">Se medlemskap</a>
-    <a href="skogas.html" class="cta-btn-alt">Upptäck Skogås</a>
+    <a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank" rel="noopener" class="cta-btn">Se vårt gruppträningsschema →</a>
   </div>
 </section>
 

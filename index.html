@@ -583,21 +583,53 @@
       padding: 64px 24px;
     }
     .amenities-scroll {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 40px;
       max-width: 1200px;
     }
+    .amenities-scroll > .amenity-card { flex: 0 0 100%; }
+    @media (min-width: 620px) {
+      .amenities-scroll > .amenity-card { flex: 0 0 calc(50% - 8px); }
+    }
+    @media (min-width: 950px) {
+      .amenities-scroll > .amenity-card { flex: 0 0 calc(33.333% - 11px); }
+    }
+    .amenity-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+      background: var(--dark);
+    }
+    .amenity-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .amenity-card:hover .amenity-img img { transform: scale(1.04); }
+    .amenity-card h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin: 20px 20px 8px;
+    }
+    .amenity-card p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--white-soft);
+      margin: 0 20px 24px;
+    }
     @media (min-width: 769px) {
-      .amenities-scroll { grid-template-columns: repeat(4, 1fr); }
     }
     .amenity-card {
       position: relative;
       border-radius: 12px;
       overflow: hidden;
-      aspect-ratio: 4/5;
       background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      text-align: left;
+      transition: border-color .3s, transform .3s;
     }
     .amenity-card img {
       width: 100%;
@@ -1363,7 +1395,7 @@
       </li>
       <li><a href="#pt">Personlig Träning</a></li>
       <li><a href="#medlemskap">Medlemskap</a></li>
-      <li><a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">Gruppträning</a></li>
+      <li><a href="grupptraning.html">Gruppträning</a></li>
       <li><a href="shoppen.html">Shop</a></li>
       <li class="nav-dropdown">
         <a href="#kontakt">Kontakt</a>
@@ -1389,7 +1421,7 @@
     <a href="trangsund.html" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">Trångsund</a>
     <a href="#pt" onclick="closeMenu()">PT</a>
     <a href="#medlemskap" onclick="closeMenu()">Medlemskap</a>
-    <a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">Gruppträning</a>
+    <a href="grupptraning.html">Gruppträning</a>
     <a href="shoppen.html">Shop</a>
     <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
     <a href="#tider" onclick="closeMenu()" style="font-size:14px;opacity:.6;padding-left:12px">Öppettider</a>
@@ -1456,7 +1488,7 @@
       <svg class="qb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       <span class="qb-label">Medlem</span>
     </a>
-    <a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">
+    <a href="grupptraning.html">
       <svg class="qb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       <span class="qb-label">Grupppass</span>
     </a>
@@ -1473,7 +1505,7 @@
   <!-- ===== FEATURES ===== -->
   <section class="features" id="gymmet">
     <span class="section-tag reveal">Varför Stolt?</span>
-    <h2 class="section-title reveal">MER ÄN BARA<br>ETT GYM.</h2>
+    <h2 class="section-title reveal">TRÄNING<br>FÖR ALLA.</h2>
     <p class="section-desc reveal">En gemenskap där du kan känna dig motiverad och inspirerad att nå dina mål, oavsett din träningsnivå.</p>
 
     <div class="features-grid">
@@ -1486,14 +1518,14 @@
       </div>
       <div class="feature-card reveal">
         <div class="feature-img">
-          <img src="https://rezdar.com/stoltgym/images/traningsgrupp3.webp" alt="Gemenskap på Stolt Gym">
+          <img src="https://rezdar.com/stoltgym/images/okt1/harlig-gemenskap.jpg" alt="Gemenskap på Stolt Gym">
         </div>
         <h3>Härlig Gemenskap</h3>
         <p>Oavsett om du är nybörjare eller erfaren, är du en del av en inkluderande och vänlig atmosfär där alla jobbar tillsammans för att nå sina mål.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-img">
-          <img src="https://rezdar.com/stoltgym/images/latpulldowns.webp" alt="Träning på Stolt Gym">
+          <img src="https://rezdar.com/stoltgym/images/okt1/kvalificerade-pts.jpg" alt="Personlig tränare på Stolt Gym">
         </div>
         <h3>Kvalificerade PTs</h3>
         <p>Våra PTs har omfattande erfarenhet och expertis inom fitness och hälsa, och de anpassar varje träningsprogram efter dina unika behov och förutsättningar.</p>
@@ -1503,25 +1535,34 @@
 
   <!-- ===== AMENITIES ===== -->
   <section class="amenities">
-    <span class="section-tag reveal">Allt Under Ett Tak</span>
-    <h2 class="section-title reveal">VI HAR ALLT<br>DU BEHÖVER.</h2>
+    <span class="section-tag reveal">Mer än bara ett gym</span>
+    <h2 class="section-title reveal">ALLT UNDER<br>ETT TAK.</h2>
 
     <div class="amenities-scroll">
       <div class="amenity-card reveal">
-        <img src="https://rezdar.com/stoltgym/images/gym7.webp" alt="Cardio-avdelning">
-        <div class="amenity-overlay"><span class="amenity-label">Cardio</span></div>
+        <div class="amenity-img"><img src="https://rezdar.com/stoltgym/images/okt1/lounge.jpg" alt="Lounge på Stolt Gym" loading="lazy"></div>
+        <h3>Lounge</h3>
+        <p>Koppla av före eller efter träningen. Som medlem bjuder vi på kaffe och te. Här finns även kyl och micro samt färdiga frysrätter från Mr. Rabbit som du enkelt kan värma på plats.</p>
       </div>
       <div class="amenity-card reveal">
-        <img src="https://rezdar.com/stoltgym/images/barnrummet.webp" alt="Barnrummet">
-        <div class="amenity-overlay"><span class="amenity-label">Barnrum</span></div>
+        <div class="amenity-img"><img src="https://rezdar.com/stoltgym/images/barnrummet.webp" alt="Barnrum på Stolt Gym" loading="lazy"></div>
+        <h3>Barnrum</h3>
+        <p>Här kan barnen rita, bygga tågbana eller titta på TV medan du tränar. Barnrummet är obemannat och barnet behöver därför kunna vistas där självständigt.</p>
       </div>
       <div class="amenity-card reveal">
-        <img src="https://rezdar.com/stoltgym/images/solarie.webp" alt="Solarium">
-        <div class="amenity-overlay"><span class="amenity-label">Solarium</span></div>
+        <div class="amenity-img"><img src="https://rezdar.com/stoltgym/images/solarie.webp" alt="Solarium på Stolt Gym" loading="lazy"></div>
+        <h3>Solarium</h3>
+        <p>Stående solarium, 13 minuter per session. Ingår för våra medlemmar och kostar 150 kr för icke-medlemmar. 18-årsgräns gäller.</p>
       </div>
       <div class="amenity-card reveal">
-        <img src="https://rezdar.com/stoltgym/images/shoppen.webp" alt="Kosttillskottbutik">
-        <div class="amenity-overlay"><span class="amenity-label">Shop</span></div>
+        <div class="amenity-img"><img src="https://rezdar.com/stoltgym/images/inbody.jpg" alt="InBody 770-våg på Stolt Gym" loading="lazy"></div>
+        <h3>InBody 770-våg</h3>
+        <p>Få en tydligare bild av din kroppssammansättning. Vägningen görs tillsammans med vår receptionspersonal under bemannade tider. 399 kr för medlemmar, 499 kr för icke-medlemmar.</p>
+      </div>
+      <div class="amenity-card reveal">
+        <div class="amenity-img"><img src="https://rezdar.com/stoltgym/images/okt1/shop.jpg" alt="Shop på Stolt Gym" loading="lazy"></div>
+        <h3>Shop</h3>
+        <p>I vår shop hittar du allt från kosttillskott och träningsaccessoarer till träningskläder och Stolt Gym-merch.</p>
       </div>
     </div>
   </section>
@@ -1650,7 +1691,7 @@
 
       <div class="pt-card reveal">
         <div class="pt-photo">
-          <img src="https://rezdar.com/stoltgym/images/PT3.webp" alt="Jessica - Personlig Tränare">
+          <img src="https://rezdar.com/stoltgym/images/okt1/jessica.jpg" alt="Jessica - Personlig Tränare">
         </div>
         <div class="pt-info">
           <h3>Jessica</h3>
@@ -1863,8 +1904,8 @@
           <div class="hours-row"><span class="hours-day">23/12</span><span class="hours-time">12:00–20:00</span></div>
           <div class="hours-row"><span class="hours-day">24/12 Julafton</span><span class="hours-time">Obemannat</span></div>
           <div class="hours-row"><span class="hours-day">25/12 Juldagen</span><span class="hours-time">12:00–18:00</span></div>
-          <div class="hours-row"><span class="hours-day">31/12 Nyårsafton</span><span class="hours-time">13:00–17:00</span></div>
-          <div class="hours-row"><span class="hours-day">1/1 Nyårsdagen</span><span class="hours-time">Obemannat</span></div>
+          <div class="hours-row"><span class="hours-day">31/12 Nyårsafton</span><span class="hours-time">12:00–15:00</span></div>
+          <div class="hours-row"><span class="hours-day">1/1 Nyårsdagen</span><span class="hours-time">14:00–18:00</span></div>
         </div>
       </div>
     </div>
@@ -1982,7 +2023,7 @@
       <div class="footer-col">
         <h5>Snabblänkar</h5>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=ROjeG5TiLe8N5OsDRGKr9xVH5&action=membership&valdanlaggning=1&type=kont">Medlemskap</a>
-        <a href="https://www.gymcontrol.se/global/kundinloggning/v2/day_view.php?uid=9254" target="_blank">Gruppträning</a>
+        <a href="grupptraning.html">Gruppträning</a>
         <a href="coming-soon.html">Personlig Träning</a>
         <a href="shoppen.html">Shop</a>
         <a href="coming-soon.html">Lediga Tjänster</a>
