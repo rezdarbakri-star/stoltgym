@@ -233,6 +233,95 @@
     }
     .mobile-menu a:hover { color: var(--accent); }
 
+    /* ===== BLACK NOVEMBER ===== */
+    .bn-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 24px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .bn-line b { font-weight: 600; color: var(--accent); letter-spacing: 1px; }
+    .bn-line .bn-sep { width: 1px; height: 12px; background: rgba(245,245,245,.25); }
+
+    .bn-section {
+      position: relative;
+      background: #000;
+      border-top: 1px solid rgba(245,245,245,.08);
+      border-bottom: 1px solid rgba(245,245,245,.08);
+      overflow: hidden;
+    }
+    .bn-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,.10), transparent 70%);
+      pointer-events: none;
+    }
+    .bn-inner { position: relative; max-width: 820px; margin: 0 auto; text-align: center; }
+    .bn-eyebrow {
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--white-soft); margin-bottom: 18px;
+    }
+    .bn-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 10vw, 5.5rem);
+      line-height: .92;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .bn-title em { font-style: normal; color: var(--accent); }
+    .bn-sub {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 3.4vw, 1.7rem);
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .bn-desc { font-size: 15px; line-height: 1.7; color: var(--white-soft); max-width: 520px; margin: 0 auto 28px; }
+    .bn-list {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      margin-bottom: 24px;
+    }
+    .bn-chip {
+      border: 1px solid var(--dark-border);
+      background: var(--dark-card);
+      border-radius: 99px;
+      padding: 9px 18px;
+      font-size: 13px;
+      color: var(--white);
+    }
+    .bn-chip span { color: var(--accent); }
+    .bn-dates {
+      font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--white-soft); opacity: .7; margin-bottom: 28px;
+    }
+    .bn-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .bn-terms { display: block; margin-top: 18px; font-size: 12px; color: var(--white-soft); opacity: .6; text-decoration: underline; }
+    .bn-terms:hover { opacity: 1; }
+
+    .bn-note {
+      max-width: 1200px;
+      margin: 0 auto 28px;
+      background: var(--dark-card);
+      border: 1px solid rgba(0,212,255,.3);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+      text-align: left;
+    }
+    .bn-note-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      background: var(--accent); color: var(--black);
+      padding: 5px 12px; border-radius: 99px; white-space: nowrap;
+    }
+    .bn-note p { margin: 0; font-size: 14px; color: var(--white); flex: 1; min-width: 200px; }
+    .bn-note a { color: var(--accent); text-decoration: underline; font-size: 13px; white-space: nowrap; }
+    @media (max-width: 600px) { .bn-note { flex-direction: column; align-items: flex-start; gap: 10px; } }
+
     /* ===== HERO ===== */
     .hero {
       position: relative;
@@ -1423,10 +1512,36 @@
       <div class="hero-tag">Skogås &bull; Trångsund</div>
       <h1>TRÄNA<br><span class="hero-logo-crop"><img src="STOLTGYM_LOGGA_CROPPED.png" alt="STOLT"></span></h1>
       <p class="hero-sub">Ett familjärt gym där gemenskap, träningsglädje och utveckling står i fokus. Här är alla välkomna.</p>
+      <p class="bn-line">🖤 Black November <span class="bn-sep"></span> <b>15 % på alla PT-paket</b></p>
       <div class="hero-btns">
         <a href="#medlemskap" class="btn-primary">Bli Medlem</a>
         <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="btn-outline">Köp PT-timmar</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== BLACK NOVEMBER ===== -->
+  <section class="bn-section" id="black-november">
+    <div class="bn-inner">
+      <p class="bn-eyebrow">🖤 Black November</p>
+      <h2 class="bn-title"><em>15 %</em> på alla<br>PT-paket.</h2>
+      <p class="bn-sub">Ta träningen till nästa nivå.</p>
+      <p class="bn-desc">Under november får du som medlem 15 % rabatt på alla våra PT-paket — oavsett om du vill träna själv, med en vän eller i grupp.</p>
+
+      <div class="bn-list">
+        <span class="bn-chip"><span>·</span> PT Singel, Duo &amp; Trio</span>
+        <span class="bn-chip"><span>·</span> 5-pack &amp; 10-pack</span>
+        <span class="bn-chip"><span>·</span> Räntefri delbetalning i 3 mån</span>
+      </div>
+
+      <p class="bn-dates">Gäller 1–25 november 2026</p>
+
+      <div class="bn-btns">
+        <a href="#pt" class="btn-primary">Boka din PT</a>
+        <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="btn-outline">Köp PT-paket</a>
+      </div>
+
+      <a href="villkor.html" class="bn-terms">Läs villkoren för erbjudandet</a>
     </div>
   </section>
 
@@ -1598,6 +1713,12 @@
     <span class="section-tag reveal">Personlig Träning</span>
     <h2 class="section-title reveal">DIN TRÄNING.<br>DINA VILLKOR.</h2>
     <p class="section-desc reveal">Våra personliga tränare hjälper dig att nå dina mål med skräddarsydda program och motiverande coachning.</p>
+
+    <div class="bn-note reveal">
+      <span class="bn-note-tag">🖤 Black November</span>
+      <p>15 % rabatt på alla PT-paket till och med 25 november. Gäller medlemmar.</p>
+      <a href="villkor.html">Villkor</a>
+    </div>
 
     <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="pt-buy-btn reveal">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
