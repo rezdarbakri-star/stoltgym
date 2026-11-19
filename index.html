@@ -322,6 +322,35 @@
     .bn-note a { color: var(--accent); text-decoration: underline; font-size: 13px; white-space: nowrap; }
     @media (max-width: 600px) { .bn-note { flex-direction: column; align-items: flex-start; gap: 10px; } }
 
+
+    /* ===== ERBJUDANDEN (datumstyrda) ===== */
+    .is-off{display:none !important}
+    .offers-section{position:relative;background:#000;border-top:1px solid rgba(245,245,245,.08);border-bottom:1px solid rgba(245,245,245,.08);overflow:hidden}
+    .offers-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,212,255,.10),transparent 70%);pointer-events:none}
+    .offers-inner{position:relative;max-width:1200px;margin:0 auto}
+    .offers-head{text-align:center;margin-bottom:36px}
+    .offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:900px){.offers-grid{grid-template-columns:1fr}}
+    .offer-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:90px}
+    .offer-card.is-featured{grid-column:1/-1;border-color:rgba(0,212,255,.45);text-align:center;align-items:center;padding:44px 24px}
+    .offer-card:target{box-shadow:0 0 0 2px var(--accent)}
+    .offer-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+    .offer-title{font-family:var(--font-display);font-size:clamp(1.9rem,5vw,2.6rem);line-height:.95;letter-spacing:1.5px}
+    .offer-card.is-featured .offer-title{font-size:clamp(2.6rem,9vw,5rem)}
+    .offer-title em{font-style:normal;color:var(--accent)}
+    .offer-desc{font-size:14px;line-height:1.65;color:var(--white-soft)}
+    .offer-card.is-featured .offer-desc{max-width:560px;font-size:15px}
+    .offer-dates{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white-soft);opacity:.75}
+    .offer-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+    .offer-card.is-featured .offer-btns{justify-content:center;margin-top:8px}
+    .offer-card details{font-size:13px;color:var(--white-soft);width:100%}
+    .offer-card.is-featured details{max-width:560px}
+    .offer-card summary{cursor:pointer;color:var(--white);text-decoration:underline;opacity:.75;list-style:none}
+    .offer-card summary::-webkit-details-marker{display:none}
+    .offer-card details p,.offer-card details li{margin-top:10px;line-height:1.6;text-align:left}
+    .offer-card details ul{padding-left:18px}
+    @media (max-width:600px){.offer-btns{flex-direction:column;align-items:stretch;width:100%}.offer-btns a{text-align:center}}
+
     /* ===== HERO ===== */
     .hero {
       position: relative;
@@ -1520,28 +1549,92 @@
     </div>
   </section>
 
-  <!-- ===== BLACK NOVEMBER ===== -->
-  <section class="bn-section" id="black-november">
-    <div class="bn-inner">
-      <p class="bn-eyebrow">🖤 Black November</p>
-      <h2 class="bn-title"><em>15 %</em> på alla<br>PT-paket.</h2>
-      <p class="bn-sub">Ta träningen till nästa nivå.</p>
-      <p class="bn-desc">Under november får du som medlem 15 % rabatt på alla våra PT-paket — oavsett om du vill träna själv, med en vän eller i grupp.</p>
-
-      <div class="bn-list">
-        <span class="bn-chip"><span>·</span> PT Singel, Duo &amp; Trio</span>
-        <span class="bn-chip"><span>·</span> 5-pack &amp; 10-pack</span>
-        <span class="bn-chip"><span>·</span> Räntefri delbetalning i 3 mån</span>
+  <!-- ===== AKTUELLA ERBJUDANDEN =====
+       Varje kort tänds/släcks automatiskt (svensk tid) via data-from / data-until.
+       Annonserna länkar hit: #blackweek  #pt-erbjudande  #inbody  #presentkort
+       Förhandsvisa ett datum: ?visa=2026-11-23 -->
+  <section class="offers-section" id="erbjudanden">
+    <div class="offers-inner">
+      <div class="offers-head">
+        <span class="section-tag">Just nu på Stolt Gym</span>
+        <h2 class="section-title">AKTUELLA<br>ERBJUDANDEN</h2>
       </div>
 
-      <p class="bn-dates">Gäller 1–25 november 2026</p>
+      <div class="offers-grid">
 
-      <div class="bn-btns">
-        <a href="#pt" class="btn-primary">Boka din PT</a>
-        <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="btn-outline">Köp PT-paket</a>
+        <!-- BLACK WEEK: syns 23/11 – 31/12 (tecknandeperioden) -->
+        <article class="offer-card is-featured" id="blackweek" data-from="2026-11-23T00:00:00+01:00" data-until="2027-01-01T00:00:00+01:00">
+          <span class="offer-eyebrow">🖤 Black Week</span>
+          <h3 class="offer-title">Varför vänta<br>till <em>nyår?</em></h3>
+          <p class="offer-desc">Börja träna redan nu! Teckna autogiromedlemskap så bjuder vi på träningen resten av året och hela startavgiften på 295 kr.</p>
+          <div class="bn-list">
+            <span class="bn-chip"><span>·</span> Fri träning till 1 januari 2027</span>
+            <span class="bn-chip"><span>·</span> Fri startavgift (ord. 295 kr)</span>
+            <span class="bn-chip"><span>·</span> Skogås &amp; Trångsund</span>
+          </div>
+          <div class="offer-btns">
+            <a href="#medlemskap" class="btn-primary">Teckna medlemskap</a>
+          </div>
+          <details>
+            <summary>Villkor</summary>
+            <p>Erbjudandet gäller vid tecknande av autogiromedlemskap med 12 betalande månader under perioden 23/11-26 – 31/12-26. Därefter gäller medlemsavgiften för valt medlemskap. Övriga medlemsvillkor gäller enligt avtalet.</p>
+          </details>
+        </article>
+
+        <!-- PT 15 %: syns t.o.m. 30/11 -->
+        <article class="offer-card" id="pt-erbjudande" data-until="2026-12-01T00:00:00+01:00">
+          <span class="offer-eyebrow">🖤 Black November</span>
+          <h3 class="offer-title"><em>15 %</em> på alla PT-paket</h3>
+          <p class="offer-desc">Som medlem får du 15 % rabatt på alla våra PT-paket – träna själv, med en vän eller i grupp. PT Singel, Duo &amp; Trio, 5- och 10-pack. Räntefri delbetalning i 3 mån.</p>
+          <p class="offer-dates">Gäller 1–25 november 2026</p>
+          <div class="offer-btns">
+            <a href="https://www.gymcontrol.se/global/webshop/index.php?uid=9254&sid=RTWglsHBztvjdz54mDFGMVduAp&action=articles&valdanlaggning=1" target="_blank" rel="noopener" class="btn-primary">Köp PT-paket</a>
+            <a href="#pt" class="btn-outline">Våra PT:er</a>
+          </div>
+          <details>
+            <summary>Villkor</summary>
+            <p>Gäller medlemmar. <a href="villkor.html" style="color:var(--accent)">Läs fullständiga villkor</a>.</p>
+          </details>
+        </article>
+
+        <!-- INBODY 50 %: syns t.o.m. 30/11 -->
+        <article class="offer-card" id="inbody" data-until="2026-12-01T00:00:00+01:00">
+          <span class="offer-eyebrow">Hela november · Skogås</span>
+          <h3 class="offer-title"><em>50 %</em> på InBody 770</h3>
+          <p class="offer-desc">Hur mycket av din vikt är muskler och hur mycket är fett? Få koll på muskelmassa, fettprocent och kroppens balans med en InBody-mätning.</p>
+          <div class="offer-btns">
+            <a href="skogas.html" class="btn-primary">Hitta till Skogås</a>
+          </div>
+          <details>
+            <summary>Så gör du</summary>
+            <ul>
+              <li>Gäller både medlemmar och icke-medlemmar.</li>
+              <li>Köps direkt i kassan på Stolt Gym Skogås.</li>
+              <li>Mätningen görs under bemannade tider.</li>
+            </ul>
+          </details>
+        </article>
+
+        <!-- PRESENTKORT: alltid -->
+        <article class="offer-card" id="presentkort">
+          <span class="offer-eyebrow">🎁 Julklappstips</span>
+          <h3 class="offer-title">Ge bort <em>träning</em></h3>
+          <p class="offer-desc">Ett presentkort på Stolt Gym gäller på hela vårt utbud – även matlådor från Rabbit Mealbox.</p>
+          <div class="offer-btns">
+            <a href="skogas.html" class="btn-primary">Köp i Skogås</a>
+          </div>
+          <details>
+            <summary>Så köper du &amp; villkor</summary>
+            <ul>
+              <li>Presentkortet köps i receptionen på Stolt Gym Skogås.</li>
+              <li>Gäller i 12 månader från köpdatum och kan användas vid flera tillfällen.</li>
+              <li>Kan inte bytas mot kontanter, restvärde betalas inte ut. Förlorat presentkort ersätts inte.</li>
+              <li>PT kräver aktivt medlemskap.</li>
+            </ul>
+          </details>
+        </article>
+
       </div>
-
-      <a href="villkor.html" class="bn-terms">Läs villkoren för erbjudandet</a>
     </div>
   </section>
 
@@ -1714,7 +1807,7 @@
     <h2 class="section-title reveal">DIN TRÄNING.<br>DINA VILLKOR.</h2>
     <p class="section-desc reveal">Våra personliga tränare hjälper dig att nå dina mål med skräddarsydda program och motiverande coachning.</p>
 
-    <div class="bn-note reveal">
+    <div class="bn-note reveal" data-until="2026-12-01T00:00:00+01:00">
       <span class="bn-note-tag">🖤 Black November</span>
       <p>15 % rabatt på alla PT-paket till och med 25 november. Gäller medlemmar.</p>
       <a href="villkor.html">Villkor</a>
@@ -2374,5 +2467,17 @@
 })();
 </script>
 
+<script>
+/* Datumstyrda erbjudanden (svensk tid). ?visa=ÅÅÅÅ-MM-DD förhandsvisar ett datum. */
+(function(){
+  var q=new URLSearchParams(location.search).get('visa');
+  var now=q?new Date(q+'T12:00:00+01:00'):new Date();
+  document.querySelectorAll('[data-from],[data-until]').forEach(function(el){
+    var f=el.getAttribute('data-from'),u=el.getAttribute('data-until');
+    var on=(!f||now>=new Date(f))&&(!u||now<new Date(u));
+    el.classList.toggle('is-off',!on);
+  });
+})();
+</script>
 </body>
 </html>
