@@ -376,5 +376,41 @@ footer{background: var(--dark); border-top: 1px solid var(--dark-border); paddin
 })();
 </script>
 
+<script>
+/* Försäljningsspårning: klick till GymControls webbshop skickas till Meta-pixeln
+   som InitiateCheckout. Körs bara om besökaren godkänt cookies (fbq finns då). */
+(function(){
+  var K='stoltUtm';
+  try{
+    var p=new URLSearchParams(location.search);
+    if(p.get('utm_source')||p.get('fbclid')){
+      sessionStorage.setItem(K,JSON.stringify({
+        source:p.get('utm_source')||'facebook',
+        campaign:p.get('utm_campaign')||'',
+        content:p.get('utm_content')||''
+      }));
+    }
+  }catch(e){}
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('a[href*="gymcontrol.se/global/webshop"]'):null;
+    if(!a||typeof window.fbq!=='function')return;
+    var h=a.href,card=a.closest('.price-card'),utm={};
+    try{utm=JSON.parse(sessionStorage.getItem(K)||'{}');}catch(e){}
+    var label=card&&card.querySelector('.price-label'),scope=card&&card.querySelector('.price-scope'),amt=card&&card.querySelector('.price-amount');
+    var id=(h.match(/membershipid=(\d+)/)||[])[1];
+    var d={
+      content_category:/action=articles/.test(h)?'PT':'Medlemskap',
+      content_name:label?(label.textContent+(scope?' – '+scope.textContent:'')):(a.textContent||'').trim().slice(0,80),
+      sida:location.pathname,
+      kampanj:utm.campaign||'',
+      annons:utm.content||''
+    };
+    if(id)d.content_ids=[id];
+    if(amt){var v=parseInt(amt.textContent.replace(/\D/g,''),10);if(v){d.value=v;d.currency='SEK';}}
+    fbq('track','InitiateCheckout',d);
+  },true);
+})();
+</script>
+
 </body>
 </html>
