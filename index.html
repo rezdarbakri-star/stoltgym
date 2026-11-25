@@ -1025,6 +1025,23 @@
       color: var(--white-soft);
     }
 
+    .reviews-ratings {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-top: 8px;
+    }
+    .rating-pill {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: 999px; padding: 10px 20px 10px 16px;
+      color: var(--white); text-decoration: none;
+      transition: border-color .2s;
+    }
+    .rating-pill:hover { border-color: var(--accent); }
+    .rating-score { font-family: var(--font-display); font-size: 30px; line-height: 1; }
+    .rating-stars { color: var(--accent); font-size: 13px; letter-spacing: 2px; display: block; }
+    .rating-meta { font-size: 12px; color: var(--white-soft); display: block; }
+    .rating-meta strong { color: var(--white); font-weight: 600; }
+
     /* ===== PRICING PREVIEW ===== */
     .pricing-section { background: var(--dark); }
     .pricing-tabs {
@@ -1887,24 +1904,34 @@
   <section class="reviews-section">
     <span class="section-tag reveal">Recensioner</span>
     <h2 class="section-title reveal">VAD VÅRA<br>MEDLEMMAR SÄGER.</h2>
+    <div class="reviews-ratings reveal">
+      <a class="rating-pill" href="https://www.google.com/maps/place/Stolt+Gym+Skog%C3%A5s/@59.2177681,18.1530023,17z/data=!4m8!3m7!1s0x465f7bd4f14f9ddf:0xd5c47d5527844294!8m2!3d59.2177681!4d18.1530023!9m1!1b1!16s%2Fg%2F11t04yqpr2" target="_blank" rel="noopener">
+        <span class="rating-score">4,6</span>
+        <span><span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-meta"><strong>Skogås</strong> · 155 omdömen på Google</span></span>
+      </a>
+      <a class="rating-pill" href="https://www.google.com/maps/search/?api=1&query=Stolt+Gym+Tr%C3%A5ngsund" target="_blank" rel="noopener">
+        <span class="rating-score">4,8</span>
+        <span><span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-meta"><strong>Trångsund</strong> · 17 omdömen på Google</span></span>
+      </a>
+    </div>
 
     <div class="reviews-grid">
       <div class="review-card reveal">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>"Alltid renat och snyggt när man kommer in i gymmet och personal är alltid glad och välkomnande. Kan inte bli annat än ett bra söndags pass."</blockquote>
-        <div class="review-author">Yvonne A</div>
+        <blockquote>"Jag tränar regelbundet på Stolt Gym Skogås och kan varmt rekommendera det. Gymmet är rymligt med en stor variation av utrustning, och personalen är alltid trevlig, respektfull och hjälpsam när man har frågor. Dessutom ser de till att det alltid är rent och fräscht i lokalerna, vilket verkligen bidrar till en bättre helhetsupplevelse"</blockquote>
+        <div class="review-author">Halil A</div>
         <div class="review-source">Google Review</div>
       </div>
       <div class="review-card reveal">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>"Grymt gym! Gymmet har en bra uppsättning utrustning och moderna faciliteter samt uppdaterar utrustning kontinuerligt. Lokalerna är alltid rena och välskötta, vilket ger en trevlig och motiverande atmosfär."</blockquote>
-        <div class="review-author">Linnea H</div>
+        <blockquote>"Det jag behöver finns på Stolt Gym. Tillmötesgående och kompetent personal, gruppträning, pt som det är världsklass på. Det viktigaste av allt, utrustning som tillgodoser allas behov samt att det är rent och fräscht"</blockquote>
+        <div class="review-author">Camilla S</div>
         <div class="review-source">Google Review</div>
       </div>
       <div class="review-card reveal">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>"Rent och fräscht gym med trevlig personal, nice att dom bjuder på kaffe i receptionen. Jag gick på gruppträning som var peppig och inspirerade. Rekommenderar starkt!"</blockquote>
-        <div class="review-author">Isabella R</div>
+        <blockquote>"Stolt är ett fantastiskt gym Personalen är proffsig och supertrevlig och lokalen är alltid fräsch och inbjudande. Man känner sig verkligen välkommen varje gång Tack för en toppenupplevelse varje besök!"</blockquote>
+        <div class="review-author">Mazen S</div>
         <div class="review-source">Google Review</div>
       </div>
     </div>
